@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,6 @@ Route::prefix('category')->group(function () {
     Route::post('/', [CategoryController::class, 'store'])->name('category.store');
     Route::put('/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-
 });
 Route::prefix('product')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
@@ -34,4 +34,14 @@ Route::prefix('product')->group(function () {
     Route::post('/', [ProductController::class, 'store'])->name('product.store');
     Route::put('/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+});
+Route::prefix('customer')->group(function () {
+    Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/register', [CustomerController::class, 'register'])->name('customer.register');
+    Route::post('/register', [CustomerController::class, 'checkRegister'])->name('customer.checkRegister');
+    Route::get('/login', [CustomerController::class, 'login'])->name('customer.login');
+    Route::post('/login', [CustomerController::class, 'checkLogin'])->name('customer.checkLogin');
+    Route::get('/forgetPass', [CustomerController::class, 'forgetPass'])->name('customer.forgetPass');
+    Route::post('/recoverPass', [CustomerController::class, 'recoverPass'])->name('customer.recoverPass');
+    Route::post('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
 });
