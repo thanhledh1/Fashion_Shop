@@ -10,7 +10,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-header">{{ __('language.product') }}</h5>
+                <h5 class="card-header">{{ __('language.customer') }}</h5>
                 <p class="card-description">
                 </p>
                 <div class="table-responsive">

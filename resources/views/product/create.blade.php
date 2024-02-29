@@ -73,9 +73,9 @@
                 <input type="file" name="image" id="image" class="form-control">
                 <br>
 
-                <input type="submit" class="btn btn-outline-success" value="{{ __('language.confirm') }}">
+                <input type="submit" class="btn btn-success btn-rounded btn-fw" value="{{ __('language.confirm') }}">
 
-                <a class="btn btn-outline-danger" href="{{ route('product.index') }}">{{ __('language.go_back') }}</a>
+                <a class="btn btn-danger btn-rounded btn-fw" href="{{ route('product.index') }}">{{ __('language.go_back') }}</a>
 
             </form>
         </div>

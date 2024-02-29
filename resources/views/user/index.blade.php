@@ -24,14 +24,14 @@ border-radius:50%;
                                         <h3 class="m-0 font-weight-bold text-primary" style="text-align: center">{{ __('language.Personnel') }}</h3>
                                     </div>
                                     <hr>
-                        <a href="{{ route('user.create') }}" class="btn btn-outline-primary">{{ __('language.Register_for_an_HR_account') }}</a>
+                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-rounded btn-fw">{{ __('language.Register_for_an_HR_account') }}</a>
                     </header>
                     <hr>
 
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-                            <h5 class="card-header">{{ __('language.product') }}</h5>
+                            <h5 class="card-header">{{ __('language.user') }}</h5>
                             <p class="card-description">
                             </p>
                             <div class="table-responsive">
@@ -69,11 +69,11 @@ border-radius:50%;
                                         <td>
                                             @if (Auth::user()->hasPermission('User_update'))
                                             <a href="{{ route('user.edit', $user->id) }}"
-                                                class="btn btn-outline-warning">{{ __('language.update') }}</a>
+                                                class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
                                             @endif
                                             @if (Auth::user()->hasPermission('User_forceDelete'))
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
-                                                id="{{ $user->id }}" class="btn btn-outline-danger deleteIcon">{{ __('language.delete') }}</i></a>
+                                                id="{{ $user->id }}" class="btn btn-danger btn-rounded btn-fw">{{ __('language.delete') }}</i></a>
                                             @endif
                                         </td>
                                     </tr>

@@ -55,9 +55,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-actions">
-                                                    <button class="btn btn-outline-success"
+                                                    <button class="btn btn-success btn-rounded btn-fw"
                                                         type="submit">{{ __('language.submit') }}</button>
-                                                    <a href="{{ route('group.index') }}" class="btn btn-outline-danger"
+                                                    <a href="{{ route('group.index') }}" class="btn btn-danger btn-rounded btn-fw"
                                                         type="submit">{{ __('language.go_back') }}</a>
                                                 </div>
                                             </div>

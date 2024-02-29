@@ -64,9 +64,9 @@
                         <label for="image" class="form-label">image</label>
                         <input class="form-control" name="image" value="{{ $product->image }}" type="file"><br>
 
-                        <input type="submit" class="btn btn-outline-success" value="{{ __('language.confirm') }}">
+                        <input type="submit" class="btn btn-success btn-rounded btn-fw" value="{{ __('language.confirm') }}">
 
-                        <a class="btn btn-outline-danger"
+                        <a class="btn btn-danger btn-rounded btn-fw"
                             href="{{ route('product.index') }}">{{ __('language.go_back') }}</a>
 
                     </form>

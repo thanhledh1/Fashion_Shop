@@ -55,6 +55,17 @@
   <script src="{{ asset('admin/js/template.js')}}"></script>
   <!-- endinject -->
   <!-- End custom js for this page-->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        let url = "{{ route('changeLang') }}";
+
+        $(".changeLang").change(function() {
+            console.log(1)
+            window.location.href = url + "?lang=" + $(this).val();
+        });
+    </script>
 </body>
 
 </html>

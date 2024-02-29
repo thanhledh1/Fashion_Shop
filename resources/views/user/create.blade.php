@@ -144,8 +144,8 @@
                                             </div>
                                             <div class="form-actions">
                                                 <br><br><br><br>
-                                                <button class="btn btn-outline-success" type="submit">{{ __('language.submit') }}</button>
-                                                <a class="btn btn-outline-danger" href="{{ route('user.index') }}">{{ __('language.go_back') }}</a>
+                                                <button class="btn btn-success btn-rounded btn-fw" type="submit">{{ __('language.submit') }}</button>
+                                                <a class="btn btn-danger btn-rounded btn-fw" href="{{ route('user.index') }}">{{ __('language.go_back') }}</a>
                                             </div>
                                         </div>
                                 </form>

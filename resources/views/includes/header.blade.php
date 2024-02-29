@@ -120,35 +120,37 @@
       </ul>
       <ul class="navbar-nav navbar-nav-right">
         <li class="nav-item nav-profile dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-            <img src="{{ asset('admin/images/faces/face5.jpg')}}" alt="profile"/>
-            <span class="nav-profile-name">Eleanor Richardson</span>
-          </a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                <img src="{{asset('admin/uploads/user/'.Auth()->guard('web')->user()->image) }}" alt="profile"/>
+                <span class="nav-profile-name">{{ Auth()->guard('web')->user()->name }}</span>
+              </a>
+
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
             <a class="dropdown-item">
               <i class="mdi mdi-settings text-primary"></i>
               Settings
             </a>
-            <a class="dropdown-item">
-              <i class="mdi mdi-logout text-primary"></i>
-              Logout
+            <a id="logout-link" class="dropdown-item">
+                <i class="mdi mdi-logout text-primary"></i>
+                Logout
             </a>
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <script>
+                document.getElementById('logout-link').addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();
+                });
+            </script>
+
           </div>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link icon-link">
-            <i class="mdi mdi-plus-circle-outline"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link icon-link">
-            <i class="mdi mdi-web"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link icon-link">
-            <i class="mdi mdi-clock-outline"></i>
-          </a>
+        <li class="nav-item dropdown">
+            <select class="changeLang">
+                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
+                <option value="vn" {{ session()->get('locale') == 'vn' ? 'selected' : '' }}>VN</option>
+            </select>
         </li>
       </ul>
     </div>

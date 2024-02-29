@@ -17,13 +17,13 @@
                         <nav aria-label="breadcrumb">
                             @if (Auth::user()->hasPermission('Group_create'))
                                 <a href="{{ route('group.create') }}"
-                                    class="btn btn-outline-primary">{{ __('language.create_position') }}</a>
+                                    class="btn btn-primary btn-rounded btn-fw">{{ __('language.create_position') }}</a>
                             @endif
                         </nav>
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-header">{{ __('language.product') }}</h5>
+                                    <h5 class="card-header">{{ __('language.group') }}</h5>
                                     <p class="card-description">
                                     </p>
                                     <div class="table-responsive">
@@ -60,18 +60,18 @@
                                                                 @csrf
                                                                 @method('PUT')
                                                                 @if (Auth::user()->hasPermission('Group_update'))
-                                                                    <a class="btn btn-outline-info"
+                                                                    <a class="btn btn-info btn-rounded btn-fw"
                                                                         href="{{ route('group.detail', $group->id) }}">{{ __('language.authorize') }}</a>
                                                                 @endif
 
                                                                 @if (Auth::user()->hasPermission('Group_update'))
                                                                     <a href="{{ route('group.edit', $group->id) }}"
-                                                                        class="btn btn-outline-warning">{{ __('language.update') }}</a>
+                                                                        class="btn btn-warning btn-rounded btn-fw">{{ __('language.update') }}</a>
                                                                 @endif
                                                                 @if (Auth::user()->hasPermission('Group_forceDelete'))
                                                                     <a href="{{ route('group.destroy', $group->id) }}"
                                                                         id="{{ $group->id }}"
-                                                                        class="btn btn-outline-danger">{{ __('language.delete') }}</a>
+                                                                        class="btn btn-danger btn-rounded btn-fw">{{ __('language.delete') }}</a>
                                                                 @endif
                                                             </form>
                                                         </td>

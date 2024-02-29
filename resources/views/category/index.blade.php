@@ -1,62 +1,132 @@
 @extends('master')
+@section('content')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <div class="card-header py-3">
+        <h3 class="m-0 font-weight-bold text-primary" style="text-align: center">{{ __('language.category') }}</h3>
+    </div>
+    <hr>
+    <div class="wrapper">
+        {{-- <nav>
+            <div class="input-group">
+                <div class="form-outline" data-mdb-input-init>
+                    <form action="{{ route('category.search') }}" method="GET">
+                        <input type="text" name="keyword" placeholder="{{ __('language.seach') }}"
+                            value="{{ old('keyword') }}">
+                    </form>
+                </div>
+            </div>
+        </nav> --}}
+        <nav>
+            <a href="/category/create" class="btn btn-primary btn-rounded btn-fw">{{ __('language.add_new') }}</a>
+        </nav>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-header">{{ __('language.category') }}</h5>
+                <p class="card-description">
+                </p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>{{ __('language.name_category') }}</th>
+                                <th>{{ __('language.your_actions') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($categories as $category)
+                                <tr>
+                                    <td>{{ $category->name }}</td>
+                                    <td>
+                                        @if (Auth::user()->hasPermission('Category_delete'))
+                                            <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-rounded btn-fw">{{ __('language.delete') }}</button>
+                                        @endif
+                                        @if (Auth::user()->hasPermission('Category_update'))
+                                            <a href="{{ route('category.edit', $category->id) }}"
+                                                class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
+                                        @endif
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ $categories->links('pagination::bootstrap-4') }}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            @endif
+        });
+    </script>
+@endsection
 <style>
-    .container {
+    .wrapper nav {
+        display: inline-block;
+    }
+
+    .input-group {
         display: flex;
-        justify-content: space-between;
         align-items: center;
     }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .input-group input::placeholder {
+        color: #6c757d;
+    }
+
+    .input-group input:focus {
+        outline: none;
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
+
+    .nav-item.dropdown {
+        display: inline-block;
+        position: relative;
+    }
+
+    .nav-item.dropdown .changeLang {
+        padding: 8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #212529;
+        cursor: pointer;
+    }
+
+    .nav-item.dropdown .changeLang:focus {
+        outline: none;
+    }
+
+    .nav-item.dropdown .changeLang option {
+        background-color: #fff;
+        color: #212529;
+    }
 </style>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-@section('content')
-<h1 style="text-align: center" >BẢNG DANH MỤC</h1>
-<ul style="list-style-type: none;">
-<li class="">
-    <select class=" changeLang">
-        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
-        <option value="vi" {{ session()->get('locale') == 'vi' ? 'selected' : '' }}>VI</option>
-    </select>
-</li>
-</ul>
-    <div class="container">
-        <a class="btn btn-primary" href="/category/create">Thêm</a>
-        {{-- <form action="{{ route('category.search') }}" method="GET">
-            <input type="text" name="keyword" placeholder="Enter keyword" value="{{ old('keyword') }}">
-            <button class="btn btn-primary btn-sm" type="submit">Search</button>
-        </form> --}}
-
-
-
-
-    </div>
-    
-    <table class="table text-nowrap">
-        <thead>
-            <tr>
-                <th scope="col">{{ __('message.Product_company') }}</th>
-
-                <th scope="col">{{ __('message.action') }}</th>
-
-                <!-- Thêm các cột khác nếu cần -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $r)
-                <tr>
-                    <td>{{ $r->name }}</td>
-                    <td>
-                        <form action="{{ route('category.destroy', $r->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <a class="badge badge-info" href="{{route('category.edit',$r->id)}}">{{ __('message.edit') }}</a>
-                            <button class="badge badge-danger" type="submit">{{ __('message.delete') }}</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    {{ $categories->links('pagination::bootstrap-4') }}
-@endsection
-{{--  --}}

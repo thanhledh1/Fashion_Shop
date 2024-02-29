@@ -34,8 +34,8 @@
                                         <br><br>
                                         <div class="form-group">
                                             <div class="col-lg-offset-2 col-lg-6">
-                                                <button class="btn btn-outline-success" type="submit">{{ __('language.add_position') }}</button>
-                                                <a href="{{ route('group.index') }}" class="btn btn-outline-danger"
+                                                <button class="btn btn-success btn-rounded btn-fw" type="submit">{{ __('language.add_position') }}</button>
+                                                <a href="{{ route('group.index') }}" class="btn btn-danger btn-rounded btn-fw"
                                                     type="submit">{{ __('language.go_back') }}</a>
                                             </div>
                                         </div>

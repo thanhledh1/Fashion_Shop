@@ -19,7 +19,7 @@
             </div>
         </nav> --}}
         <nav>
-            <a href="/product/create" class="btn btn-outline-primary">{{ __('language.add_new') }}</a>
+            <a href="/product/create" class="btn btn-primary btn-rounded btn-fw">{{ __('language.add_new') }}</a>
         </nav>
 
     </div>
@@ -35,7 +35,6 @@
                 <thead>
                     <tr>
                         <th>{{ __('language.name_Product') }}</th>
-                        <th>{{ __('language.slug') }}</th>
                         <th>{{ __('language.price') }}</th>
                         <th>{{ __('language.description') }}</th>
                         <th>{{ __('language.quantity') }}</th>
@@ -49,7 +48,6 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->slug }}</td>
                             <td>{{ number_format($product->price) }}</td>
                             <td>{{ Str::limit($product->description, 10) }}</td>
                             <td>{{ $product->quantity }}</td>
@@ -62,17 +60,17 @@
                             </td>
                             <td>{{ $product->category->name }}</td>
                             <td>
-                                <img style="width:50% ; height: 50%"
+                                <img
                                     src="{{ asset('admin/uploads/product/' . $product->image) }}" alt="">
                             </td>
                             <td>
                                     <form action="{{ route('product.destroy', $product->id) }}" method="post">
                                         @method('DELETE')
                                         @csrf
-                                        <button onclick="return confirm('Bạn có muốn xóa danh mục này không?');" class="btn btn-outline-danger"
+                                        <a href="{{ route('product.edit', [$product->id]) }}" class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
+                                        <button onclick="return confirm('Bạn có muốn xóa danh mục này không?');" class="btn btn-danger btn-rounded btn-fw"
                                             type="submit">{{ __('language.delete') }}</button>
                                     </form>
-                                    <a href="{{ route('product.edit', [$product->id]) }}" class="btn btn-outline-info">{{ __('language.update') }}</a>
                             </td>
                         </tr>
                     @endforeach
