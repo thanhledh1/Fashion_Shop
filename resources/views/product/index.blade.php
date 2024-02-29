@@ -29,7 +29,6 @@
           <div class="card-body">
             <h5 class="card-header">{{ __('language.product') }}</h5>
             <p class="card-description">
-              Add class <code>.table-striped</code>
             </p>
             <div class="table-responsive">
               <table class="table table-striped">

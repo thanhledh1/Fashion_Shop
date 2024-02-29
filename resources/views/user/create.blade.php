@@ -1,5 +1,5 @@
-{{-- @extends('admin.master')
-@section('content') --}}
+@extends('master')
+@section('content')
     <main class="page-content">
         <section class="wrapper">
             <div class="panel-panel-default">
@@ -156,4 +156,4 @@
             </div>
         </section>
     </main>
-{{-- @endsection --}}
+@endsection

@@ -1,5 +1,5 @@
-{{-- @extends('admin.master')
-@section('content') --}}
+@extends('master')
+@section('content')
 <style>
     img#avtshow {
         border: 3px solid rgb(150, 0, 0);
@@ -205,4 +205,4 @@
         })
     </script>
 </main>
-{{-- @endsection --}}
+@endsection

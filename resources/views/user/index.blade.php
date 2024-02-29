@@ -1,5 +1,5 @@
-{{-- @extends('admin.master')
-@section('content') --}}
+@extends('master')
+@section('content')
 <style>
     img#avt {
 width: 80px;
@@ -27,6 +27,14 @@ border-radius:50%;
                         <a href="{{ route('user.create') }}" class="btn btn-outline-primary">{{ __('language.Register_for_an_HR_account') }}</a>
                     </header>
                     <hr>
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-header">{{ __('language.product') }}</h5>
+                            <p class="card-description">
+                            </p>
+                            <div class="table-responsive">
                     <div>
                         <table class="table" ui-jq="footable"
                             ui-options='{
@@ -74,6 +82,7 @@ border-radius:50%;
                         </table>
                     </div>
                 </div>
+              </div>
             </div>
         </section>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
@@ -142,4 +151,4 @@ border-radius:50%;
         </script>
 </section>
 </main>
-{{-- @endsection --}}
+@endsection

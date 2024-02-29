@@ -1,4 +1,4 @@
-{{-- @extends('masteradmin') --}}
+@extends('master')
 <style>
     .container {
         display: flex;
@@ -30,6 +30,7 @@
 
 
     </div>
+    
     <table class="table text-nowrap">
         <thead>
             <tr>
@@ -57,5 +58,5 @@
         </tbody>
     </table>
     {{ $categories->links('pagination::bootstrap-4') }}
-{{-- @endsection --}}
+@endsection
 {{--  --}}
