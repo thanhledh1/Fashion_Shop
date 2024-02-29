@@ -27,7 +27,7 @@ class ProductController extends Controller
         return view('product.create', compact('products', 'categories'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
 {
     $product = new Product();
     $product->name = $request->name;

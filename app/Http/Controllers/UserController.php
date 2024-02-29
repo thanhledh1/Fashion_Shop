@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\UserRequet;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Group;
 use App\Models\Product;
 use App\Models\User;
@@ -52,7 +53,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $user = new User();
         $user->name = $request->name;

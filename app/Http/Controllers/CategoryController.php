@@ -22,7 +22,7 @@ class CategoryController extends Controller
         return view('category.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category();
         $category->name = $request['name'];
