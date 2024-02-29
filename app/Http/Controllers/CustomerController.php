@@ -27,13 +27,13 @@ class CustomerController extends Controller
     }
     public function checklogin(Request $request)
     {
-        // dd(123);
         $arr = [
             'email' => $request->email,
             'password' => $request->password
         ];
-        if (Auth::guard('customers')->attempt($arr)) {
-            return redirect()->route('shop.index');
+
+        if (Auth::attempt($arr)) {
+            return redirect()->route('customer.index');
         } else {
             return redirect()->route('customer.login');
         }
@@ -65,9 +65,7 @@ class CustomerController extends Controller
             return redirect()->route('customer.login');
         } else {
             return redirect()->route('customer.register');
-
         }
-
     }
     public function list()
     {
@@ -195,21 +193,21 @@ class CustomerController extends Controller
      * @return response
      */
     public function updatePassword(Request $request)
-{
-    $this->validate($request, [
-        'email' => 'required',
-        'password' => 'required|min:6',
-        'confirm_password' => 'required|same:password'
-    ]);
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password'
+        ]);
 
-    $customer = Customer::where('email', $request->email)->where('is_verified', 0)->where('token', $request->token)->first();
-    if ($customer) {
-        $customer->is_verified = 1;
-        $customer->token = '';
-        $customer->password = Hash::make($request->password);
-        $customer->save();
-        return redirect()->route('login')->with('success', 'Success! password has been changed');
+        $customer = Customer::where('email', $request->email)->where('is_verified', 0)->where('token', $request->token)->first();
+        if ($customer) {
+            $customer->is_verified = 1;
+            $customer->token = '';
+            $customer->password = Hash::make($request->password);
+            $customer->save();
+            return redirect()->route('login')->with('success', 'Success! password has been changed');
+        }
+        return redirect()->route('forgot-password')->with('failed', 'Failed! something went wrong');
     }
-    return redirect()->route('forgot-password')->with('failed', 'Failed! something went wrong');
-}
 }

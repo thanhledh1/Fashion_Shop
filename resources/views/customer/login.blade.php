@@ -96,6 +96,7 @@
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <div class="input-form">
                         <span>Mật Khẩu</span>
                         <input type="password" name="password" class="form-control">
@@ -103,6 +104,7 @@
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
+                    
                     <div class="nho-dang-nhap">
                         <label><input type="checkbox" name="">Nhớ Đăng Nhập</label>
                     </div>
@@ -112,7 +114,7 @@
                     </div>
                     {{-- <p><a href="{{ route('forgot-password') }}">Quên Mật Khẩu</a></p> --}}
                 </form>
-                <div class="register-link">
+                {{-- <div class="register-link">
                     <hr>
 
                     <div class="login-button" onclick="redirectToLogin()">
@@ -128,7 +130,7 @@
                     <hr>
                     <p>Bạn Chưa Có Tài Khoản? <a href="{{ route('customer.register') }}">Đăng Ký</a></p>
 
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- Kết Thúc Phần Nội Dung -->
