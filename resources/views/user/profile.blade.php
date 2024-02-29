@@ -20,7 +20,54 @@
                     <h1 class="">Thông tin</h1>
                 </header>
                 <!-- Modal -->
-               
+                {{-- <div style="color: red" class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit modal</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="id">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Họ Và Tên</label>
+                                        <input type="text" name="name" class="form-control" id="up_first_name"
+                                            aria-describedby="emailHelp">
+                                        <span style="color: red;" id="upfirst_name_error"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
+                                        <input type="text" name="phone" class="form-control" id="up_first_name"
+                                            aria-describedby="emailHelp">
+                                        <span style="color: red;" id="upfirst_name_error"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Giới tính</label>
+                                        <input type="text" name="gender" class="form-control" id="up_first_name"
+                                            aria-describedby="emailHelp">
+                                        <span style="color: red;" id="upfirst_name_error"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Ngày sinh</label>
+                                        <input type="text" name="	birthday" class="form-control" id="up_first_name"
+                                            aria-describedby="emailHelp">
+                                        <span style="color: red;" id="upfirst_name_error"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Địa chỉ</label>
+                                        <input type="text" name="last_name" class="form-control" id="up_last_name">
+                                        <span style="color: red;" id="uplast_name_error"></span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="btnok">Lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
 
 
                 <hr>

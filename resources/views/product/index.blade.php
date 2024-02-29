@@ -1,5 +1,5 @@
-{{-- @extends('admin.master')
-@section('content') --}}
+@extends('master')
+@section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <div class="card-header py-3">
@@ -24,10 +24,15 @@
 
     </div>
 
-    <div class="card">
-        <h5 class="card-header">{{ __('language.product') }}</h5>
-        <div class="table-responsive text-nowrap">
-            <table class="table">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-header">{{ __('language.product') }}</h5>
+            <p class="card-description">
+              Add class <code>.table-striped</code>
+            </p>
+            <div class="table-responsive">
+              <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>{{ __('language.name_Product') }}</th>
@@ -73,11 +78,13 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+              </table>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     {{-- {{ $products->links('pagination::bootstrap-4') }} --}}
-{{--
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -145,4 +152,4 @@
         background-color: #fff;
         color: #212529;
     }
-</style> --}}
+</style>
