@@ -35,6 +35,8 @@ Route::prefix('category')->group(function () {
     Route::post('/', [CategoryController::class, 'store'])->name('category.store');
     Route::put('/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('/search', [CategoryController::class, 'search'])->name('category.search');
+
 });
 Route::prefix('product')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
@@ -43,6 +45,9 @@ Route::prefix('product')->group(function () {
     Route::post('/', [ProductController::class, 'store'])->name('product.store');
     Route::put('/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+
+
 });
 Route::prefix('customer')->group(function () {
     Route::get('/', [CustomerController::class, 'index'])->name('customer.index');

@@ -108,15 +108,16 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success', 'Xóa thành công!');
     }
     public function search(Request $request)
-{    $keyword = $request->input('keyword');
-    $products = Product::where(function ($query) use ($keyword) {
-        $query->where('name', 'LIKE', "%$keyword%")
-            ->orWhere('price', 'LIKE', "%$keyword%")
-            ->orWhere('description', 'LIKE', "%$keyword%")
-            ->orWhere('quantity', 'LIKE', "%$keyword%")
-            ->orWhere('status', 'LIKE', "%$keyword%");
-    })
-        ->whereHas('category', function ($query) use ($keyword) {
+    {
+        $keyword = $request->input('keyword');
+        $products = Product::where(function ($query) use ($keyword) {
+            $query->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('price', 'LIKE', "%$keyword%")
+                ->orWhere('description', 'LIKE', "%$keyword%")
+                ->orWhere('quantity', 'LIKE', "%$keyword%")
+                ->orWhere('status', 'LIKE', "%$keyword%");
+        })
+        ->orWhereHas('category', function ($query) use ($keyword) {
             $query->where('name', 'LIKE', "%$keyword%");
         })
         ->paginate(3);

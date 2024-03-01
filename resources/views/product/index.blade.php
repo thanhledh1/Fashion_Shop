@@ -1,5 +1,12 @@
 @extends('master')
 @section('content')
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <div class="card-header py-3">
@@ -8,20 +15,18 @@
     <hr>
 
     <div class="wrapper">
-        {{-- <nav>
-            <div class="input-group">
-                <div class="form-outline" data-mdb-input-init>
-                    <form action="{{ route('product.search') }}" method="GET">
-                        <input type="text" name="keyword" placeholder="{{ __('language.seach') }}"
-                            value="{{ old('keyword') }}">
-                    </form>
-                </div>
-            </div>
-        </nav> --}}
-        <nav>
+        <div class="container">
             <a href="/product/create" class="btn btn-primary btn-rounded btn-fw">{{ __('language.add_new') }}</a>
-        </nav>
-
+        <nav>
+        <div class="input-group ">
+            <div class="form-outline" data-mdb-input-init>
+                <form action="{{ route('product.search') }}" method="GET">
+                    <input class="form-control " type="text" name="keyword" placeholder="search by name,price..."
+                    value="{{ old('keyword') }}">
+                </form>
+            </div>
+        </div>
+    </nav>
     </div>
 
     <div class="col-lg-12 grid-margin stretch-card">

@@ -6,6 +6,9 @@
         <h3 class="m-0 font-weight-bold text-primary" style="text-align: center">{{ __('language.edit_product') }}</h3>
     </div>
     <hr>
+
+    
+
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
