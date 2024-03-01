@@ -1,6 +1,6 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-      <li class="nav-item sidebar-category">
+      {{-- <li class="nav-item sidebar-category">
         <p>Navigation</p>
         <span></span>
       </li>
@@ -10,24 +10,31 @@
           <span class="menu-title">Dashboard</span>
           <div class="badge badge-info badge-pill">2</div>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item sidebar-category">
         <p>Components</p>
         <span></span>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-          <i class="mdi mdi-palette menu-icon"></i>
-          <span class="menu-title">UI Elements</span>
+          <i class="mdi mdi-grid-large menu-icon"></i>
+          <span class="menu-title">Tables</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ asset('admin/pages/ui-features/buttons.html')}}">Buttons</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ asset('admin/pages/ui-features/typography.html')}}">Typography</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('category.index')}}">Category</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('product.index')}}">Product</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('customer.index')}}">Customer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('group.index')}}">Group</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('user.index')}}">User</a></li>
+            <li class="nav-item"> <a class="nav-link" href="">Order</a></li>
+
+
+
           </ul>
         </div>
-      </li>
+      {{-- </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ asset('admin/pages/forms/basic_elements.html')}}">
           <i class="mdi mdi-view-headline menu-icon"></i>
@@ -86,6 +93,6 @@
         <a class="nav-link" href="https://www.bootstrapdash.com/product/spica-admin/">
           <button class="btn bg-danger btn-sm menu-title">Upgrade to pro</button>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </nav>
