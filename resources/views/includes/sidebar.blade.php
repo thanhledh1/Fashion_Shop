@@ -29,6 +29,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{route('group.index')}}">Group</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{route('user.index')}}">User</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{route('order.index')}}">Order</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('product.trash')}}">Trash</a></li>
 
 
 

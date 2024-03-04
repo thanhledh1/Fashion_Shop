@@ -41,7 +41,7 @@
     }}'>
                                             <thead>
                                                 <tr>
-                                                    <th>{{ __('language.Order_Numerical') }}</th>
+                                                    <th>{{ __('language.order_Numerical') }}</th>
                                                     <th>{{ __('language.name') }}</th>
                                                     <th>{{ __('language.undertake_person') }}</th>
                                                     <th data-breakpoints="xs">{{ __('language.your_actions') }}</th>

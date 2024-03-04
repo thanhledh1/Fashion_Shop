@@ -17,12 +17,11 @@
                     <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>address</th>
-                                <th>email</th>
-                                <th>phone</th>
-                                <th>password</th>
-                                <th>image</th>
+                                <th>{{ __('language.name') }}</th>
+                                <th>{{ __('language.address') }}</th>
+                                <th>{{ __('language.email') }}</th>
+                                <th>{{ __('language.phone') }}</th>
+                                <th>{{ __('language.image') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,8 +31,7 @@
                                     <td>{{ $customer->address }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->phone }}</td>
-                                    <td>{{ $customer->password }}</td>
-                                    <td><img style="width:50% ; height: 50%"
+                                    <td><img
                                             src="{{ asset('admin/uploads/customer/' . $customer->image) }}" alt="">
                                     </td>
                                 </tr>

@@ -5,21 +5,21 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-header">{{ __('language.customer') }}</h5>
+                <h5 class="card-header">{{ __('language.order') }}</h5>
                 <p class="card-description">
                 </p>
                 <div class="table-responsive">
                     <table class="table" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên Khách Hàng</th>
-                <th scope="col">Email</th>
-                <th scope="col">Số Điện Thoại</th>
-                <th scope="col">Địa Chỉ</th>
-                <th scope="col">price</th>
+                <th scope="col">{{ __('language.order_Numerical') }}</th>
+                <th scope="col">{{ __('language.name_customer') }}</th>
+                <th scope="col">{{ __('language.email') }}</th>
+                <th scope="col">{{ __('language.phone') }}</th>
+                <th scope="col">{{ __('language.address') }}</th>
+                <th scope="col">{{ __('language.price') }}</th>
 
-                <th scope="col">Tùy Chọn</th>
+                <th scope="col">{{ __('language.your_actions') }}</th>
             </tr>
         </thead>
         <tbody>

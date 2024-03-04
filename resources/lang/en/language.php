@@ -67,4 +67,6 @@ return [
     "forgot_password" => "Forgot Password",
     "account" => "Account",
     "support" => "Support",
+    "name_customer" => "Name Customer",
+    "email" => "Email",
 ];

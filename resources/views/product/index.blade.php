@@ -69,19 +69,18 @@
                                     src="{{ asset('admin/uploads/product/' . $product->image) }}" alt="">
                             </td>
                             <td>
-                                @if (Auth::user()->hasPermission('Product_delete'))
-                                    <form action="{{ route('product.deleteProduct', $product->id) }}" method="post">
-                                        @method('PUT')
-                                        @csrf
-                                        <button
-                                            onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không ?');"
-                                            class="btn btn-outline-danger">{{ __('language.delete') }}</button>
-                                @endif
+                                <form action="{{ route('product.deleteProduct', $product->id) }}" method="post">
+                                    @method('PUT')
+                                    @csrf
+
+                                    @if (Auth::user()->hasPermission('Product_update'))
+                                        <a href="{{ route('product.edit', [$product->id]) }}" class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
+                                    @endif
+
+                                    @if (Auth::user()->hasPermission('Product_delete'))
+                                        <button onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không ?');" type="submit" class="btn btn-danger btn-rounded btn-fw">{{ __('language.delete') }}</button>
+                                    @endif
                                 </form>
-                                @if (Auth::user()->hasPermission('Product_update'))
-                                    <a href="{{ route('product.edit', [$product->id]) }}"
-                                        class="btn btn-outline-info">{{ __('language.update') }}</a>
-                                @endif
                             </td>
                         </tr>
                     @endforeach

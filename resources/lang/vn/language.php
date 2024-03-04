@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "Order_Numerical" => "Số thứ tự",
+    "order_Numerical" => "Số thứ tự",
     "name_Product" => "Tên sản phẩm",
     "price" => "Giá",
     "description" => "Thông tin sản phẩm",
@@ -64,5 +64,6 @@ return [
     "forgot_password" => "Quên mật khẩu",
     "account" => "Tài khoản",
     "support" => "Hỗ trợ",
-
+    "name_customer" => "Tên khách hàng",
+    "email" => "Email",
 ];
