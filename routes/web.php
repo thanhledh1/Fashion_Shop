@@ -48,6 +48,11 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
         Route::put('/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+        Route::get('/show', [ProductController::class, 'show'])->name('product.show');
+        Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
+        Route::put('/deleteProduct/{id}', [ProductController::class, 'deleteProduct'])->name('product.deleteProduct');
+        Route::put('/restoreProduct/{id}', [ProductController::class, 'restoreProduct'])->name('product.restoreProduct');
+        Route::get('/destroy/{id}', [ProductController::class, 'destroy'])->name('product_destroy');
     });
     Route::prefix('customer')->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name('customer.index');

@@ -59,7 +59,7 @@ class ProductController extends Controller
     {
         $products = Product::onlyTrashed()->paginate(3);
         $param = ['products' => $products];
-        return view('trash', $param);
+        return view('product.trash', $param);
         // dd(223);
     }
 
@@ -101,11 +101,22 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success', 'Sửa thành công!');
     }
 
+    // public function destroy($id)
+    // {
+    //     dd($product);
+    //     $product = Product::where('id',$id)->first();
+    //     if ($product != null) {
+    //         $product->delete();
+    //         return redirect()->route('product.index')->with('success', 'Xóa thành công!');
+    //     }
+    //     return redirect()->route('dashboard')->with(['message'=> 'Wrong ID!!']);
+    // }
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect()->route('product.index')->with('success', 'Xóa thành công!');
+        $this->authorize('forceDelete', Product::class);
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->forceDelete();
+        return redirect()->route('product.index')->with('success', 'Xoá thành công!');
     }
     public function search(Request $request)
     {
@@ -130,20 +141,20 @@ class ProductController extends Controller
         return view('product.show', compact('product'));
     }
 
-    // public  function softdeletes($id)
-    // {
-    //     // $this->authorize('delete', Product::class);
-    //     date_default_timezone_set("Asia/Ho_Chi_Minh");
-    //     $product = Product::findOrFail($id);
-    //     $product->deleted_at = date("Y-m-d h:i:s");
-    //     $product->save();
-    //     return redirect()->route('product.index');
-    // }
-    // public function restoredelete($id)
-    // {
-    //     // $this->authorize('restore', Category::class);
-    //     $products = Product::withTrashed()->where('id', $id);
-    //     $products->restore();
-    //     return redirect()->route('product.trash');
-    // }
+    public  function deleteProduct($id)
+    {
+        // $this->authorize('delete', Product::class);
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $product = Product::find($id);
+        $product->deleted_at = date("Y-m-d h:i:s");
+        $product->save();
+        return redirect()->route('product.index');
+    }
+    public function restoreProduct($id)
+    {
+        // $this->authorize('restore', Category::class);
+        $products = Product::withTrashed()->where('id', $id);
+        $products->restore();
+        return redirect()->route('product.trash');
+    }
 }

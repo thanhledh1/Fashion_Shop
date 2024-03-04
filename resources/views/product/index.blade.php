@@ -69,13 +69,19 @@
                                     src="{{ asset('admin/uploads/product/' . $product->image) }}" alt="">
                             </td>
                             <td>
-                                    <form action="{{ route('product.destroy', $product->id) }}" method="post">
-                                        @method('DELETE')
+                                @if (Auth::user()->hasPermission('Product_delete'))
+                                    <form action="{{ route('product.deleteProduct', $product->id) }}" method="post">
+                                        @method('PUT')
                                         @csrf
-                                        <a href="{{ route('product.edit', [$product->id]) }}" class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
-                                        <button onclick="return confirm('Bạn có muốn xóa danh mục này không?');" class="btn btn-danger btn-rounded btn-fw"
-                                            type="submit">{{ __('language.delete') }}</button>
-                                    </form>
+                                        <button
+                                            onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không ?');"
+                                            class="btn btn-outline-danger">{{ __('language.delete') }}</button>
+                                @endif
+                                </form>
+                                @if (Auth::user()->hasPermission('Product_update'))
+                                    <a href="{{ route('product.edit', [$product->id]) }}"
+                                        class="btn btn-outline-info">{{ __('language.update') }}</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
