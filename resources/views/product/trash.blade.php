@@ -37,7 +37,7 @@
                         <td>{{ $product->category->name }}</td>
 
                         <td>
-                            <form action="{{ route('product.deleteProduct', $product->id) }}" method="POST">
+                            <form action="{{ route('product.restoreProduct', $product->id) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 <button type="submit" class="btn btn-outline-success">{{ __('language.restore') }}</button>
