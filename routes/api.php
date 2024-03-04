@@ -28,4 +28,7 @@ Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::post('orders', [OrderController::class, 'store']);
 Route::post('customers', [CustomerController::class, 'store']);
 
+Route::post('checklogin', [CustomerController::class, 'checklogin']);
+
+
 

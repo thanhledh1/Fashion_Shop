@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -50,6 +51,22 @@ class CustomerController extends Controller
             'customer' => $customer
         ], 201);
     }
+
+    public function checklogin(Request $request)
+{
+    $arr = [
+        'email' => $request->email,
+        'password' => $request->password
+    ];
+
+    if (Auth::guard('customers')->attempt($arr)) {
+        // Đăng nhập thành công, trả về một mảng JSON
+        return response()->json(['success' => true], 200);
+    } else {
+        // Đăng nhập không thành công, trả về một mảng JSON
+        return response()->json(['success' => false,]);
+    }
+}
 
     /**
      * Display the specified resource.
