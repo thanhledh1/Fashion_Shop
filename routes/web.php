@@ -27,7 +27,7 @@ Route::get('/home', function () {
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-
+Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function () {
 Route::prefix('category')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
@@ -82,5 +82,5 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
 });
-
+});
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
