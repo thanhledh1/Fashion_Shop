@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\OrderDetailController;
 use App\Http\Controllers\Api\ProductController;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,8 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::post('orders', [OrderController::class, 'store']);
+Route::post('orderdetail', [OrderDetailController::class, 'store']);
+
 Route::post('customers', [CustomerController::class, 'store']);
 
 Route::post('checklogin', [CustomerController::class, 'checklogin']);
