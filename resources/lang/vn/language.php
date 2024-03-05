@@ -66,4 +66,9 @@ return [
     "support" => "Hỗ trợ",
     "name_customer" => "Tên khách hàng",
     "email" => "Email",
+    "list" => "Danh sách",
+    "stocking" => "Còn hàng",
+    "out_of_stock" => "Hết hàng",
+    "depcriptions" => "Chi tiết sản phẩm"
+
 ];

@@ -4,7 +4,6 @@
       <ul class="navbar-nav mr-lg-2">
         <li class="nav-item nav-search d-none d-lg-block">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
           </div>
         </li>
       </ul>
@@ -16,11 +15,7 @@
               </a>
 
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-            <a class="dropdown-item"
-            href="">
-              <i class="mdi mdi-settings text-primary"></i>
-              Settings
-            </a>
+
             <a id="logout-link" class="dropdown-item">
                 <i class="mdi mdi-logout text-primary"></i>
                 Logout
