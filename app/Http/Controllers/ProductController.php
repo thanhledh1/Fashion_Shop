@@ -80,26 +80,21 @@ class ProductController extends Controller
     }
 
     public function edit($id)
-{
-    try {
-        if (!$id) {
-            throw new \Exception('Không có ID sản phẩm được cung cấp.');
+    {
+        try {
+            if (!$id) {
+                throw new \Exception('Không có ID sản phẩm được cung cấp.');
+            }
+
+            $product = Product::findOrFail($id);
+
+            $categories = Category::all();
+
+            return view('product.edit', compact('product', 'categories'));
+        } catch (\Exception $e) {
+            return redirect()->route('product.index')->with('error', 'Đã xảy ra lỗi khi chỉnh sửa sản phẩm: ' . $e->getMessage());
         }
-
-        // $this->authorize('update', Product::class);
-        $product = Product::find($id);
-
-        if (!$product) {
-            throw new \Exception('Không tìm thấy sản phẩm.');
-        }
-
-        $categories = Category::all();
-
-        return view('product.edit', compact('product', 'categories'));
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Đã xảy ra lỗi khi chỉnh sửa sản phẩm: ' . $e->getMessage());
     }
-}
 
     public function update(Request $request, $id)
     {
