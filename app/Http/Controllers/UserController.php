@@ -55,83 +55,100 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->address = $request->address;
-        $user->phone = $request->phone;
-        $user->birthday = $request->birthday;
-        $user->gender = $request->gender;
-        $user->group_id = $request->group_id;
-        $file = $request->image;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = 'admin/uploads/user';
-            $newImageName = $image->getClientOriginalName();
-            $newImageName = pathinfo($newImageName, PATHINFO_FILENAME) . '_' . time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path($path), $newImageName);
-            $user->image = $newImageName;
-        }
-        $user->save();
+        try {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->address = $request->address;
+            $user->phone = $request->phone;
+            $user->birthday = $request->birthday;
+            $user->gender = $request->gender;
+            $user->group_id = $request->group_id;
+            $file = $request->image;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = 'admin/uploads/user';
+                $newImageName = $image->getClientOriginalName();
+                $newImageName = pathinfo($newImageName, PATHINFO_FILENAME) . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($path), $newImageName);
+                $user->image = $newImageName;
+            }
+            $user->save();
 
-        return redirect()->route('user.index')->with('success', 'Đăng ký thành công!');
+            return redirect()->route('user.index')->with('success', 'Đăng ký thành công!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred. Please try again later.');
+        }
     }
+
 
     public function show($id)
     {
-        $this->authorize('view', User::class);
-        $user = User::findOrFail($id);
-        $param =[
-            'user'=>$user,
-        ];
-
-
-        // $productshow-> show();
-        return view('user.profile', $param);
+        try {
+            $this->authorize('view', User::class);
+            $user = User::findOrFail($id);
+            $param =[
+                'user'=>$user,
+            ];
+            return view('user.profile', $param);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred. Please try again later.');
+        }
     }
 
     public function edit($id)
     {
-        // $this->authorize('view', User::class);
-        $user = User::find($id);
-        $groups=Group::get();
-        $param = [
-            'user' => $user ,
-            'groups' => $groups
-        ];
-        return view('user.edit', $param);
+        try {
+            // $this->authorize('view', User::class);
+            $user = User::find($id);
+            $groups=Group::get();
+            $param = [
+                'user' => $user ,
+                'groups' => $groups
+            ];
+            return view('user.edit', $param);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred. Please try again later.');
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        // $user->password = bcrypt($request->password);
-        $user->address = $request->address;
-        $user->phone = $request->phone;
-        $user->birthday = $request->birthday;
-        $user->gender = $request->gender;
-        $user->group_id = $request->group_id;
-        $get_image = $request->image;
-        if ($get_image) {
-            $path = 'admin\uploads\user' . $user->image;
-            if (file_exists($path)) {
-                unlink($path);
+        try {
+            $user = User::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            // $user->password = bcrypt($request->password);
+            $user->address = $request->address;
+            $user->phone = $request->phone;
+            $user->birthday = $request->birthday;
+            $user->gender = $request->gender;
+            $user->group_id = $request->group_id;
+            $get_image = $request->image;
+            if ($get_image) {
+                $path = 'admin\uploads\user' . $user->image;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                $path = 'admin\uploads\user';
+                $get_name_image = $get_image->getClientOriginalName();
+                $name_image = current(explode('.', $get_name_image));
+                $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+                $get_image->move($path, $new_image);
+                $user->image = $new_image;
+                $data['user_image'] = $new_image;
             }
-            $path = 'admin\uploads\user';
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image));
-            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
-            $user->image = $new_image;
-            $data['user_image'] = $new_image;
+            $user->save();
+            return redirect()->route('user.index')->with('success', 'Sửa thành công!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred. Please try again later.');
         }
-        $user->save();
-        return redirect()->route('user.index')->with('success', 'Sửa thành công!');
     }
-
     // hiển thị form đổi mật khẩu
     public function editpass($id)
     {

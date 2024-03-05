@@ -26,8 +26,6 @@ class UserRequest extends FormRequest
         return [
 
             'password' => 'required|min:6',
-            'newpassword' => 'required|min:6',
-            'renewpassword' => 'required|min:6',
             'email'=>'required|unique:users,email',
         ];
     }
@@ -38,11 +36,7 @@ class UserRequest extends FormRequest
             'password.required' => ':attribute bắt buộc nhập',
             'password.min' => ':attribute bắt buộc :min kí tự trở lên',
 
-            //đổi mật khẩu
-            'newpassword.required' => ':attribute bắt buộc nhập',
-            'newpassword.min' => ':attribute bắt buộc :min kí tự trở lên',
-            'renewpassword.required' => ':attribute bắt buộc nhập',
-            'renewpassword.min' => ':attribute bắt buộc :min kí tự trở lên',
+
             //emai
             'email.required' => ':attribute bắt buộc nhập'
 
@@ -54,8 +48,7 @@ class UserRequest extends FormRequest
             'name' => 'Tên',
             'email' => 'Email',
             'password' => 'Mật khẩu',
-            'newpassword' => 'Mật khẩu mới',
-            'renewpassword' => 'Mật khẩu xác nhận',
+
         ];
     }
 }

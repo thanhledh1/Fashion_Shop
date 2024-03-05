@@ -82,24 +82,27 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $customer = new Customer();
-        $customer->name = $request->name;
-        $customer->address = $request->address;
-        $customer->email = $request->email;
-        $customer->phone = $request->phone;
-        $customer->password = $request->password;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = 'admin/uploads/customer';
-            $newImageName = $image->getClientOriginalName();
-            $newImageName = pathinfo($newImageName, PATHINFO_FILENAME) . '_' . time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path($path), $newImageName);
-            $customer->image = $newImageName;
+        try {
+            $customer = new Customer();
+            $customer->name = $request->name;
+            $customer->address = $request->address;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->password = $request->password;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = 'admin/uploads/customer';
+                $newImageName = $image->getClientOriginalName();
+                $newImageName = pathinfo($newImageName, PATHINFO_FILENAME) . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($path), $newImageName);
+                $customer->image = $newImageName;
+            }
+            $customer->save();
+            return redirect()->route('customer.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
         }
-        $customer->save();
-        return redirect()->route('customer.index');
     }
-
     public function edit($id)
     {
         $customer = Customer::find($id);
@@ -108,30 +111,43 @@ class CustomerController extends Controller
 
     public function update(Request $request, $id)
     {
-        $customer = Customer::find($id);
-        $customer->name = $request->name;
-        $customer->save();
+        try {
+            $customer = Customer::find($id);
+            $customer->name = $request->name;
+            $customer->save();
 
-        return redirect()->route('customer.index');
+            return redirect()->route('customer.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
+
 
     public function destroy($id)
     {
-        $customer = Customer::find($id);
-        $customer->delete();
-        return redirect()->route('customer.index');
+        try {
+            $customer = Customer::find($id);
+            $customer->delete();
+            return redirect()->route('customer.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
 
     public function search(Request $request)
     {
-        $keyword = $request->input('keyword');
-        $customers = Customer::where('name', 'LIKE', "%$keyword%")
-            ->orWhere('address', 'LIKE', "%$keyword%")
-            ->orWhere('email', 'LIKE', "%$keyword%")
-            ->orWhere('phone', 'LIKE', "%$keyword%")
-            ->paginate(3);
+        try {
+            $keyword = $request->input('keyword');
+            $customers = Customer::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('address', 'LIKE', "%$keyword%")
+                ->orWhere('email', 'LIKE', "%$keyword%")
+                ->orWhere('phone', 'LIKE', "%$keyword%")
+                ->paginate(3);
 
-        return view('customer.index', compact('customers'));
+            return view('customer.index', compact('customers'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
     public function logout(Request $request)
     {

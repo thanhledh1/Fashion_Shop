@@ -13,7 +13,7 @@ class CategoryController extends Controller
     {
         $categories = Category::paginate(3);
 
-        return view('category.index',compact('categories'));
+        return view('category.index', compact('categories'));
     }
 
     public function create()
@@ -24,11 +24,14 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $category = new Category();
-        $category->name = $request['name'];
-        $category->save();
-        return redirect()->route('category.index')->with('success', 'Thêm thành công!');
-
+        try {
+            $category = new Category();
+            $category->name = $request['name'];
+            $category->save();
+            return redirect()->route('category.index')->with('success', 'Thêm thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
     public function edit($id)
     {
@@ -38,22 +41,33 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category->name = $request->name;
-        $category->save();
-
-        return redirect()->route('category.index')->with('success', 'Sửa thành công!');
+        try {
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->save();
+            return redirect()->route('category.index')->with('success', 'Sửa thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-        return redirect()->route('category.index')->with('success', 'Xóa thành công!');
+        try {
+            $category = Category::find($id);
+            $category->delete();
+            return redirect()->route('category.index')->with('success', 'Xóa thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
     public function search(Request $request)
     {
-        $keyword = $request->input('keyword');
-        $categories = Category::where('name', 'LIKE', "%$keyword%")->paginate(3);
-        return view('category.index', compact('categories'));
+        try {
+            $keyword = $request->input('keyword');
+            $categories = Category::where('name', 'LIKE', "%$keyword%")->paginate(3);
+            return view('category.index', compact('categories'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
 }
