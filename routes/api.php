@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\OrderDetailController;
@@ -27,12 +28,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
-Route::post('orders', [OrderController::class, 'store']);
-Route::post('orderdetail', [OrderDetailController::class, 'store']);
+Route::post('/orders', [OrderController::class, 'store']);
+Route::post('/orderdetail', [OrderDetailController::class, 'store']);
 
-Route::post('customers', [CustomerController::class, 'store']);
+Route::post('/customers', [CustomerController::class, 'store']);
 
-Route::post('checklogin', [CustomerController::class, 'checklogin']);
+Route::post('/checklogin', [CustomerController::class, 'checklogin']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 
 

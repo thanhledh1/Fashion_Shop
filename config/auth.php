@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -42,6 +42,10 @@ return [
         ],
         'customers' => [
             'driver' => 'session',
+            'provider' => 'customers',
+        ],
+        'api' => [
+            'driver' => 'jwt',
             'provider' => 'customers',
         ],
     ],
@@ -98,6 +102,12 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
+            'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
