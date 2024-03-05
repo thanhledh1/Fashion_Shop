@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,11 +49,15 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $group = new Group();
+            $group->name = $request->name;
+            $group->save();
 
-        $group=new Group();
-        $group->name=$request->name;
-        $group->save();
-        return redirect()->route('group.index')->with('success', 'Thêm thành công!');
+            return redirect()->route('group.index')->with('success', 'Thêm thành công!');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu trữ: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -89,10 +94,15 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $group = Group::find($id);
-        $group->name = $request->name;
-        $group->save();
-        return redirect()->route('group.index')->with('success', 'Sửa thành công!');
+        try {
+            $group = Group::find($id);
+            $group->name = $request->name;
+            $group->save();
+
+            return redirect()->route('group.index')->with('success', 'Sửa thành công!');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi cập nhật: ' . $e->getMessage());
+        }
     }
     /**
      * Remove the specified resource from storage.
@@ -100,11 +110,16 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-        public function destroy($id)
+    public function destroy($id)
     {
-        $group = Group::find($id);
-        $group->delete();
-        return redirect()->route('group.index')->with('success', 'Xóa thành công!');
+        try {
+            $group = Group::find($id);
+            $group->delete();
+
+            return redirect()->route('group.index')->with('success', 'Xóa thành công!');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi xóa: ' . $e->getMessage());
+        }
     }
      /**
      * Show the form for editing the specified resource.
@@ -141,11 +156,16 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function group_detail(Request $request,$id)
+    public function group_detail(Request $request, $id)
     {
-        $group= Group::find($id);
-        $group->roles()->detach();
-        $group->roles()->attach($request->roles);
-        return redirect()->route('group.index')->with('success', 'Cấp quyền thành công!');
+        try {
+            $group = Group::find($id);
+            $group->roles()->detach();
+            $group->roles()->attach($request->roles);
+
+            return redirect()->route('group.index')->with('success', 'Cấp quyền thành công!');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi cấp quyền: ' . $e->getMessage());
+        }
     }
 }

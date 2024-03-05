@@ -7,154 +7,143 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->latest('created_at')->paginate(10);
-        $startingNumber = ($products->currentPage() - 1) * $products->perPage() + 1;
+        try {
+            $products = Product::with('category')->latest('created_at')->paginate(10);
+            $startingNumber = ($products->currentPage() - 1) * $products->perPage() + 1;
 
-        return view('product.index', compact('products', 'startingNumber'));
+            return view('product.index', compact('products', 'startingNumber'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi tải danh sách sản phẩm: ' . $e->getMessage());
+        }
     }
 
     public function create()
     {
-        // $this->authorize('create', Product::class);
+        try {
+            // $this->authorize('create', Product::class);
 
-        $categories = Category::all();
-        $products = Product::all();
-        return view('product.create', compact('products', 'categories'));
+            $categories = Category::all();
+            $products = Product::all();
+            return view('product.create', compact('products', 'categories'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi tạo sản phẩm: ' . $e->getMessage());
+        }
     }
 
     public function store(ProductRequest $request)
-{
-    $product = new Product();
-    $product->name = $request->name;
-    $product->price = $request->price;
-    $product->description = $request->description;
-    $product->description_ct = $request->description_ct;
-    $product->quantity = $request->quantity;
-    $product->status = $request->status;
-    $product->category_id = $request->category_id;
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $path = 'admin/uploads/product';
-        $newImageName = $image->getClientOriginalName();
-        $newImageName = pathinfo($newImageName, PATHINFO_FILENAME) . '_' . time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path($path), $newImageName);
-        $product->image = $newImageName;
-    }
-    $product->save();
-
-    if ($product->quantity == 0) {
-        // Hiển thị thông báo "Hết hàng" hoặc thực hiện các hành động khác khi hết hàng
-        return redirect()->back()->with('error', 'Hết hàng');
-    }
-
-    return redirect()->route('product.index')->with('success', 'Thêm thành công!');
-}
-
-    public  function trash()
     {
-        $products = Product::onlyTrashed()->paginate(3);
-        $param = ['products' => $products];
-        return view('product.trash', $param);
-        // dd(223);
+        try {
+            $product = new Product();
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->description = $request->description;
+            $product->description_ct = $request->description_ct;
+            $product->quantity = $request->quantity;
+            $product->status = $request->status;
+            $product->category_id = $request->category_id;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = 'admin/uploads/product';
+                $newImageName = $image->getClientOriginalName();
+                $newImageName = pathinfo($newImageName, PATHINFO_FILENAME) . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($path), $newImageName);
+                $product->image = $newImageName;
+            }
+            $product->save();
+
+            if ($product->quantity == 0) {
+                // Hiển thị thông báo "Hết hàng" hoặc thực hiện các hành động khác khi hết hàng
+                return redirect()->back()->with('error', 'Hết hàng');
+            }
+
+            return redirect()->route('product.index')->with('success', 'Thêm thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu sản phẩm: ' . $e->getMessage());
+        }
+    }
+
+    public function trash()
+    {
+        try {
+            $products = Product::onlyTrashed()->paginate(3);
+            $param = ['products' => $products];
+            return view('product.trash', $param);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi tải danh sách sản phẩm đã xóa: ' . $e->getMessage());
+        }
     }
 
     public function edit($id)
-    {
+{
+    try {
+        if (!$id) {
+            throw new \Exception('Không có ID sản phẩm được cung cấp.');
+        }
+
         // $this->authorize('update', Product::class);
         $product = Product::find($id);
+
+        if (!$product) {
+            throw new \Exception('Không tìm thấy sản phẩm.');
+        }
+
         $categories = Category::all();
 
         return view('product.edit', compact('product', 'categories'));
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Đã xảy ra lỗi khi chỉnh sửa sản phẩm: ' . $e->getMessage());
     }
+}
 
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->description = $request->description;
-        $product->description_ct = $request->description_ct;
-        $product->quantity = $request->quantity;
-        $product->status = $request->status;
-        $product->category_id = $request->category_id;
-        $get_image = $request->image;
-        if ($get_image) {
-            $path = 'admin\uploads\product' . $product->image;
-            if (file_exists($path)) {
-                unlink($path);
+        try {
+            $product = Product::find($id);
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->description = $request->description;
+            $product->description_ct = $request->description_ct;
+            $product->quantity = $request->quantity;
+            $product->status = $request->status;
+            $product->category_id = $request->category_id;
+            $get_image = $request->image;
+            if ($get_image) {
+                $path = 'admin/uploads/product' . $product->image;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                $path = 'admin/uploads/product';
+                $get_name_image = $get_image->getClientOriginalName();
+                $name_image = current(explode('.', $get_name_image));
+                $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+                $get_image->move($path, $new_image);
+                $product->image = $new_image;
             }
-            $path = 'admin\uploads\product';
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image));
-            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
-            $product->image = $new_image;
-            $data['product_image'] = $new_image;
-        }
-        $product->save();
+            $product->save();
 
-        return redirect()->route('product.index')->with('success', 'Sửa thành công!');
+            return redirect()->route('product.index')->with('success', 'Cập nhật thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi cập nhật sản phẩm: ' . $e->getMessage());
+        }
     }
 
-    // public function destroy($id)
-    // {
-    //     dd($product);
-    //     $product = Product::where('id',$id)->first();
-    //     if ($product != null) {
-    //         $product->delete();
-    //         return redirect()->route('product.index')->with('success', 'Xóa thành công!');
-    //     }
-    //     return redirect()->route('dashboard')->with(['message'=> 'Wrong ID!!']);
-    // }
     public function destroy($id)
     {
-        $this->authorize('forceDelete', Product::class);
-        $product = Product::onlyTrashed()->findOrFail($id);
-        $product->forceDelete();
-        return redirect()->route('product.index')->with('success', 'Xoá thành công!');
-    }
-    public function search(Request $request)
-    {
-        $keyword = $request->input('keyword');
-        $products = Product::where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
-                ->orWhere('description', 'LIKE', "%$keyword%")
-                ->orWhere('quantity', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%");
-        })
-        ->orWhereHas('category', function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', "%$keyword%");
-        })
-        ->paginate(3);
-
-    return view('product.index', compact('products'));
-}
-    public function show($id)
-    {
-        $product = Product::findOrFail($id);
-        return view('product.show', compact('product'));
-    }
-
-    public  function deleteProduct($id)
-    {
-        // $this->authorize('delete', Product::class);
-        date_default_timezone_set("Asia/Ho_Chi_Minh");
-        $product = Product::find($id);
-        $product->deleted_at = date("Y-m-d h:i:s");
-        $product->save();
-        return redirect()->route('product.index');
-    }
-    public function restoreProduct($id)
-    {
-        // $this->authorize('restore', Category::class);
-        $products = Product::withTrashed()->where('id', $id);
-        $products->restore();
-        return redirect()->route('product.trash');
+        try {
+            $this->authorize('forceDelete', Product::class);
+            $product = Product::onlyTrashed()->findOrFail($id);
+            $product->forceDelete();
+            return redirect()->route('product.index')->with('success', 'Xoá thành công!');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Không tìm thấy sản phẩm có ID: ' . $id);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi xoá sản phẩm: ' . $e->getMessage());
+        }
     }
 }

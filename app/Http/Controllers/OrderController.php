@@ -6,6 +6,7 @@ use App\Exports\OrderExport;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -100,12 +101,19 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
-        // Xóa các chi tiết đơn hàng liên quan
-        OrderDetail::where('order_id', $id)->delete();
-        // Xóa đơn hàng
-        $order->delete();
-        return redirect()->route('order.index')->with('success', 'Đơn hàng đã được xóa thành công.');
+        try {
+            $order = Order::findOrFail($id);
+            // Xóa các chi tiết đơn hàng liên quan
+            OrderDetail::where('order_id', $id)->delete();
+            // Xóa đơn hàng
+            $order->delete();
+
+            return redirect()->route('order.index')->with('success', 'Đơn hàng đã được xóa thành công.');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Không tìm thấy đơn hàng có ID: ' . $id);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi xóa đơn hàng: ' . $e->getMessage());
+        }
     }
 
     // public function exportOrder()
