@@ -23,7 +23,7 @@
                         </div>
                         <a href="{{ route('user.create') }}"
                             class="btn btn-primary btn-rounded btn-fw">{{ __('language.Register_for_an_HR_account') }}</a>
-
+                        <br><br>   
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">

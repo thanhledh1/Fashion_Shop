@@ -20,15 +20,15 @@
                                     class="btn btn-primary btn-rounded btn-fw">{{ __('language.create_position') }}</a>
                             @endif
                         </nav>
-                        <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-header">{{ __('language.group') }}</h5>
-                                    <p class="card-description">
-                                    </p>
-                                    <div class="table-responsive">
-
-                                        <table class="table" ui-jq="footable"
+                        <br>
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-header">{{ __('language.group') }}</h5>
+                    <p class="card-description">
+                    </p>
+                    <div class="table-responsive">
+                                        <table  class="table table-striped" ui-jq="footable"
                                             ui-options='{
     "paging": {
       "enabled": true

@@ -1,32 +1,8 @@
 @extends('master')
 @section('content')
 <style>
-
-
     label {
         margin-bottom: 0.5rem;
-    }
-
-    input[type="text"],
-    select {
-        width: 180px;
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    button[type="submit"] {
-        padding: 0.75rem 1rem;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button[type="submit"]:hover {
-        background-color: #0056b3;
     }
 </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -42,19 +18,31 @@
             <div class="form-outline" data-mdb-input-init>
                 <form action="{{ route('product.search') }}" method="GET">
                     <label for="name">Tên sản phẩm:</label>
-                    <input  type="text" name="name" id="name">
+                    <input style=" width: 180px;
+                    padding: 0.5rem;
+                    margin-bottom: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;" type="text" name="name" id="name">
 
                     <label for="category">Danh mục sản phẩm:</label>
-                    <input  type="text" name="category" id="category">
+                    <input style=" width: 180px;
+                    padding: 0.5rem;
+                    margin-bottom: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;"  type="text" name="category" id="category">
                     <label for="status">Trạng thái sản phẩm:</label>
-                    <select name="status" id="status">
+                    <select style=" width: 180px;
+                    padding: 0.5rem;
+                    margin-bottom: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;" name="status" id="status">
                         <option value="">-- Chọn trạng thái --</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
 
 
-                    <button type="submit">Tìm kiếm</button>
+                    <button class="btn btn-primary btn-rounded btn-fw" type="submit">Tìm kiếm</button>
                 </form>
             </div>
         </div>
@@ -109,7 +97,7 @@
                                                     <a href="{{ route('product.edit', [$product->id]) }}"
                                                         class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
                                                 @endif
-                            <a class="btn btn-info btn-rounded btn-fw" href="{{ route('product.show', $product->id) }}">Chi tiết</a>
+                            <a  class="btn btn-warning btn-rounded btn-fw" href="{{ route('product.show', $product->id) }}">Chi tiết</a>
 
                                                 @if (Auth::user()->hasPermission('Product_delete'))
                                                     <button
