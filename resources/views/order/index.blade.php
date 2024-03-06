@@ -17,7 +17,7 @@
                 <th scope="col">{{ __('language.email') }}</th>
                 <th scope="col">{{ __('language.phone') }}</th>
                 <th scope="col">{{ __('language.address') }}</th>
-                <th scope="col">{{ __('language.price') }}</th>
+                <th scope="col">{{ __('language.status') }}</th>
 
                 <th scope="col">{{ __('language.your_actions') }}</th>
             </tr>
@@ -30,7 +30,13 @@
                     <td>{{ $item->customer->email }}</td>
                     <td>{{ $item->customer->phone }}</td>
                     <td>{{ $item->customer->address }}</td>
-                    <td>{{ $item->status }}</td>
+                    <td>
+                        @if ($item->status == 0)
+                            Chưa giao
+                        @elseif ($item->status == 1)
+                            Đã giao
+                        @endif
+                    </td>
 
 
                     <td>
@@ -38,6 +44,8 @@
                             @csrf
                             @method('DELETE')
                             <a class="btn btn-info btn-rounded btn-fw" href="{{ route('order.detail', $item->id) }}">Chi tiết</a>
+                            <a class="btn btn-warning btn-rounded btn-fw" href="{{ route('order.edit', $item->id) }}">Chỉnh sửa</a>
+
                             <button class="btn btn-danger btn-rounded btn-fw" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')">Xóa</button>
                         </form>
                     </td>

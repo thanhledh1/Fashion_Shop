@@ -92,6 +92,9 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
 
 Route::prefix('order')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::put('/update/{id}', [OrderController::class, 'update'])->name('order.update');
+
     Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('order.detail');
     Route::delete('/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
     Route::get('/xuat', [OrderController::class, 'exportOrder'])->name('xuat');
