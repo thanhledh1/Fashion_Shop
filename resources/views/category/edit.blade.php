@@ -12,7 +12,7 @@
         <label for="name" class="form-label">{{ __('language.name_category') }}</label>
         <input type="text" class="form-control" name="name" value="{{ $categories->name }}"><br>
         @error('name')
-            <div style="color: red">{{ __('language.name_ct') }}</div>
+            <div class="alert alert-danger" style="color: red">{{ __('language.name_ct') }}</div>
         @enderror
         <input type="submit" class="btn btn-success btn-rounded btn-fw" value="{{ __('language.confirm') }}">
 

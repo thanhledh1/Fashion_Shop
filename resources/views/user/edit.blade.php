@@ -35,7 +35,7 @@
                                                             value="{{ $user->email }}">
                                                         <small id="" class="form-text text-muted"></small>
                                                         @error('email')
-                                                            <div class="text text-danger">{{ $message }}</div>
+                                                            <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -47,7 +47,7 @@
                                                             value="{{ $user->name }}">
                                                         <small id="" class="form-text text-muted"></small>
                                                         @error('name')
-                                                            <div class="text text-danger">{{ $message }}</div>
+                                                            <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -59,7 +59,7 @@
                                                             value="{{ $user->phone }}">
                                                         <small id="" class="form-text text-muted"></small>
                                                         @error('phone')
-                                                            <div class="text text-danger">{{ $message }}</div>
+                                                            <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -71,7 +71,7 @@
                                                             value="{{ $user->birthday }}">
                                                         <small id="" class="form-text text-muted"></small>
                                                         @error('birthday')
-                                                            <div class="text text-danger">{{ $message }}</div>
+                                                            <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                         <br>
                                                     </div>
@@ -90,7 +90,7 @@
                                                             @endforeach
                                                         </select>
                                                         @if ('group_id')
-                                                            <p style="color:red">{{ $errors->first('group_id') }}</p>
+                                                            <p class="alert alert-danger" style="color:red">{{ $errors->first('group_id') }}</p>
                                                         @endif
                                                     @endif
                                                 </div>
@@ -105,7 +105,7 @@
                                                         <option value="Khác">Khác</option>
                                                     </select>
                                                     @if ('gender')
-                                                        <p style="color:red">{{ $errors->first('gender') }}</p>
+                                                        <p class="alert alert-danger" style="color:red">{{ $errors->first('gender') }}</p>
                                                     @endif
                                                 </div>
                                                 <div class="form-group has-warning">
@@ -117,7 +117,7 @@
                                                             src="{{ asset('storage/images/' . $user->image) ?? asset('storage/images/' . $request->image) }}"
                                                             alt="" />
                                                         @if ('image')
-                                                            <p style="color:red">{{ $errors->first('image') }}</p>
+                                                            <p class="alert alert-danger" style="color:red">{{ $errors->first('image') }}</p>
                                                         @endif
                                                         <br>
                                                     </div>
@@ -132,7 +132,7 @@
                                                             value="{{ $user->address }}">
                                                         <small id="" class="form-text text-muted"></small>
                                                         @error('address')
-                                                            <div class="text text-danger">{{ $message }}</div>
+                                                            <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                         <br>
                                                     </div>

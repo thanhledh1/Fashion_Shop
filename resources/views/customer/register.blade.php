@@ -90,7 +90,7 @@
                 <input type="text" name="name" id="name" class="form-control">
             </div>
             @error('name')
-                <div style="color: red">{{ $message }}</div>
+                <div class="alert alert-danger" style="color: red">{{ $message }}</div>
             @enderror
 
             <div class="form-group">
@@ -98,7 +98,7 @@
                 <input type="text" name="address" id="address" class="form-control">
             </div>
             @error('address')
-                <div style="color: red">{{ $message }}</div>
+                <div class="alert alert-danger" style="color: red">{{ $message }}</div>
             @enderror
 
             <div class="form-group">
@@ -106,7 +106,7 @@
                 <input type="text" name="email" id="email" class="form-control">
             </div>
             @error('email')
-                <div style="color: red">{{ $message }}</div>
+                <div class="alert alert-danger" style="color: red">{{ $message }}</div>
             @enderror
 
             <div class="form-group">
@@ -114,7 +114,7 @@
                 <input type="text" name="phone" id="phone" class="form-control">
             </div>
             @error('phone')
-                <div style="color: red">{{ $message }}</div>
+                <div class="alert alert-danger" style="color: red">{{ $message }}</div>
             @enderror
 
             <div class="form-group">
@@ -122,7 +122,7 @@
                 <input type="password" name="psw" id="psw" class="form-control">
             </div>
             @error('password')
-                <div style="color: red">{{ $message }}</div>
+                <div class="alert alert-danger" style="color: red">{{ $message }}</div>
             @enderror
 
             <div class="form-group">
@@ -135,7 +135,7 @@
                 <input type="file" name="image" id="image" class="form-control">
             </div>
             @error('image')
-                <div style="color: red">{{ $message }}</div>
+                <div class="alert alert-danger" style="color: red">{{ $message }}</div>
             @enderror
 
             <button type="submit" class="btn btn-primary registerbtn">Đăng Ký</button>

@@ -113,7 +113,7 @@
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                         @if ($errors->any())
-                            <div class="invalid-feedback">
+                            <div class="alert alert-danger">
                                 {{ $errors->first('email') }}
                             </div>
                         @endif
@@ -122,7 +122,7 @@
                         <label for="password">Mật khẩu</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                         @if ($errors->any())
-                            <div class="invalid-feedback">
+                            <div class="alert alert-danger">
                                 {{ $errors->first('password') }}
                             </div>
                         @endif
