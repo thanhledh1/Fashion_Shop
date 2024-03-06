@@ -67,8 +67,8 @@ return [
     "name_customer" => "Tên khách hàng",
     "email" => "Email",
     "list" => "Danh sách",
-    "stocking" => "Còn hàng",
-    "out_of_stock" => "Hết hàng",
+    "active" => "Còn hàng",
+    "inactive" => "Hết hàng",
     "depcriptions" => "Chi tiết sản phẩm"
 
 ];

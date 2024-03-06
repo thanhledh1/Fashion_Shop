@@ -141,4 +141,46 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Đã xảy ra lỗi khi xoá sản phẩm: ' . $e->getMessage());
         }
     }
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+        $status = $request->input('status');
+        $category = $request->input('category');
+
+        $products = Product::query()
+            ->when($name, function ($query) use ($name) {
+                $query->where('name', 'like', "%$name%");
+            })
+            ->when($status, function ($query) use ($status) {
+                if ($status === 'active') {
+                    $query->where('quantity', '>', 0); // Kiểm tra số lượng > 0 để đảm bảo còn hàng
+                } elseif ($status === 'inactive') {
+                    $query->where('quantity', '=', 0); // Kiểm tra số lượng = 0 để đảm bảo hết hàng
+                }
+            })
+            ->when($category, function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('name', $category);
+                });
+            })
+            ->get();
+
+        return view('product.index', compact('products'));
+    }
+    public  function deleteProduct($id)
+    {
+        $this->authorize('delete', Product::class);
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $product = Product::findOrFail($id);
+        $product->deleted_at = date("Y-m-d h:i:s");
+        $product->save();
+        return redirect()->route('product.index');
+    }
+    public function restoreProduct($id)
+    {
+        // $this->authorize('restore', Category::class);
+        $products = Product::withTrashed()->where('id', $id);
+        $products->restore();
+        return redirect()->route('product.trash');
+    }
 }

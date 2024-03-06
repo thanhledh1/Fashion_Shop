@@ -39,7 +39,7 @@
                         <br>
 
 
-                        <label for="description_ct" class="form-label">{{ __('language.description_ct') }}</label>
+                        <label for="description_ct" class="form-label">{{ __('language.depcriptions') }}</label>
 
                         <textarea name="description_ct" id="description_ct"  value="{{ old('description_ct') }}"></textarea>
 
@@ -62,8 +62,8 @@
                         <label for="status" class="form-label">{{ __('language.status') }}</label>
                         <select name="status" id="status" class="form-control">
                             <option value="">Vui lòng chọn trạng thái</option>
-                            <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Còn hàng</option>
-                            <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Hết hàng</option>
+                            <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>{{ __('language.active') }}</option>
+                            <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>{{ __('language.inactive') }}</option>
                         </select>
                         @error('status')
                             <div style="color: red">{{ $message }}</div>

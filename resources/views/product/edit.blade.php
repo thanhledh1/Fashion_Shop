@@ -52,10 +52,10 @@
 
                         <label for="status" class="form-label">{{ __('language.status') }}</label>
                         <select name="status" class="form-control">
-                            <option value="1" {{ $product->status == '1' ? '1' : '' }}>{{ __('language.stocking') }}
+                            <option value="1" {{ $product->status == '1' ? '1' : '' }}>{{ __('language.active') }}
                             </option>
                             <option value="0" {{ $product->status == '0' ? '0' : '' }}>
-                                {{ __('language.out_of_stock') }}</option>
+                                {{ __('language.inactive') }}</option>
                         </select><br>
 
                         <label for="category_id" class="form-label">{{ __('language.category') }}</label>

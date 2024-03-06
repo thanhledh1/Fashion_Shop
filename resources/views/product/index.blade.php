@@ -20,9 +20,29 @@
         <nav>
         <div class="input-group ">
             <div class="form-outline" data-mdb-input-init>
-                <form action="{{ route('product.search') }}" method="GET">
-                    <input class="form-control " type="text" name="keyword" placeholder="search by name,price..."
-                    value="{{ old('keyword') }}">
+                <form action="{{ route('product.search') }}" method="GET" style="display: flex; flex-wrap: wrap;">
+                    <div style="margin-right: 10px;">
+                        <label for="name">Tên sản phẩm:</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+
+                    <div style="margin-right: 10px;">
+                        <label for="status">Trạng thái sản phẩm:</label>
+                        <select name="status" id="status">
+                            <option value="">-- Chọn trạng thái --</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-right: 10px;">
+                        <label for="category">Danh mục sản phẩm:</label>
+                        <input type="text" name="category" id="category">
+                    </div>
+
+                    <div>
+                        <button type="submit">Tìm kiếm</button>
+                    </div>
                 </form>
             </div>
         </div>

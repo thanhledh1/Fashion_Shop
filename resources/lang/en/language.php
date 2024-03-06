@@ -70,7 +70,7 @@ return [
     "name_customer" => "Name Customer",
     "email" => "Email",
     "list" => "List",
-    "stocking" => "Stocking",
-    "out_of_stock" => "Out of Stock",
+    "active" => "Active",
+    "inactive" => "Inactive",
     "depcriptions" => "Depcriptions",
 ];
