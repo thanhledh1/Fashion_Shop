@@ -38,8 +38,8 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select id="status" class="form-control" name="status" required>
-                                    <option value="0" @if($order->status == 0) selected @endif>Chưa giao</option>
-                                    <option value="1" @if($order->status == 1) selected @endif>Đã giao</option>
+                                    <option value="0" @if($order->status == 0) selected @endif>Đang xử lý</option>
+                                    <option value="1" @if($order->status == 1) selected @endif>Hoàn thành</option>
                                 </select>
                             </div>
 

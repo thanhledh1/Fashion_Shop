@@ -21,15 +21,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/home1', function () {
     return view('master');
 });
+
+
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function () {
+    Route::get('/home', [ProductController::class, 'drawChart'])->name('home');
 
     Route::prefix('category')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('category.index');

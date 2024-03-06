@@ -32,9 +32,9 @@
                     <td>{{ $item->customer->address }}</td>
                     <td>
                         @if ($item->status == 0)
-                            Chưa giao
+                            Đang xử lý
                         @elseif ($item->status == 1)
-                            Đã giao
+                            Hoàn thành
                         @endif
                     </td>
 

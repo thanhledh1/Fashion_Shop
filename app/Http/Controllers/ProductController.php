@@ -187,4 +187,16 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('product.show', compact('product'));
     }
+
+    public function drawChart(Request $request)
+    {
+        $products = Product::select('name', 'quantity', 'price')->get();
+        $data = [['Product', 'Quantity']];
+
+        foreach ($products as $product) {
+            $data[] = [$product->name, $product->quantity];
+        }
+
+        return view('home', ['data' => $data])->with('products', $products);
+    }
 }
