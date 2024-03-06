@@ -19,14 +19,14 @@
                         <input type="text" name="name" id="name" class="form-control"
                             value="{{ old('name') }}">
                         @error('name')
-                            <div style="color: red">{{ $message }}</div>
+                            <div class="alert alert-danger" style="color: red">{{ $message }}</div>
                         @enderror
 
                         <label for="price" class="form-label">{{ __('language.price') }}</label>
                         <input type="text" name="price" id="price" class="form-control"
                             value="{{ old('price') }}">
                         @error('price')
-                            <div style="color: red">{{ $message }}</div>
+                            <div  class="alert alert-danger" style="  color: red">{{ $message }}</div>
                         @enderror
                         <br>
 
@@ -34,7 +34,7 @@
                         <input type="text" name="description" id="description" class="form-control"
                             value="{{ old('description') }}">
                         @error('description')
-                            <div style="color: red">{{ $message }}</div>
+                            <div class="alert alert-danger" style="color: red">{{ $message }}</div>
                         @enderror
                         <br>
 
@@ -47,7 +47,7 @@
                         {{-- <input type="text" name="description_ct" id="description_ct" class="form-control"
                             value="{{ old('description_ct') }}"> --}}
                         @error('description_ct')
-                            <div style="color: red">{{ $message }}</div>
+                            <div class="alert alert-danger" style="color: red">{{ $message }}</div>
                         @enderror
                         <br>
 
@@ -55,7 +55,7 @@
                         <input type="text" name="quantity" id="quantity" class="form-control"
                             value="{{ old('quantity') }}">
                         @error('quantity')
-                            <div style="color: red">{{ $message }}</div>
+                            <div class="alert alert-danger" style="color: red">{{ $message }}</div>
                         @enderror
                         <br>
 
@@ -66,7 +66,7 @@
                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>{{ __('language.inactive') }}</option>
                         </select>
                         @error('status')
-                            <div style="color: red">{{ $message }}</div>
+                            <div class="alert alert-danger" style="color: red">{{ $message }}</div>
                         @enderror
 
                         <br>
@@ -80,7 +80,7 @@
                             @endforeach
                         </select>
                         @error('category_id')
-                            <div style="color: red">{{ $message }}</div>
+                            <div class="alert alert-danger" style="color: red">{{ $message }}</div>
                         @enderror
                         <br>
                         <label for="image" class="form-label">{{ __('language.image') }}</label>
