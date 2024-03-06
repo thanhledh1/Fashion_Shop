@@ -1,5 +1,7 @@
 @extends('master')
 @section('content')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <div class="card-header py-3">
@@ -37,8 +39,7 @@
                         @enderror
 
                         <label for="description_ct" class="form-label">{{ __('language.depcriptions') }}</label>
-                        <input type="text" class="form-control" name="description_ct"
-                            value="{{ $product->description_ct }}"><br>
+                        <textarea class="form-control" type="text" id="description_ct" name="description_ct">{!! old('description_ct', $product->description_ct) !!}</textarea>
                         @error('description_ct')
                             <div style="color: red">{{ $message }}</div>
                         @enderror
@@ -51,8 +52,10 @@
 
                         <label for="status" class="form-label">{{ __('language.status') }}</label>
                         <select name="status" class="form-control">
-                            <option value="1" {{ $product->status == '1' ? '1' : '' }}>{{ __('language.stocking') }}</option>
-                            <option value="0" {{ $product->status == '0' ? '0' : '' }}>{{ __('language.out_of_stock') }}</option>
+                            <option value="1" {{ $product->status == '1' ? '1' : '' }}>{{ __('language.stocking') }}
+                            </option>
+                            <option value="0" {{ $product->status == '0' ? '0' : '' }}>
+                                {{ __('language.out_of_stock') }}</option>
                         </select><br>
 
                         <label for="category_id" class="form-label">{{ __('language.category') }}</label>
@@ -67,7 +70,8 @@
                         <label for="image" class="form-label">{{ __('language.image') }}</label>
                         <input class="form-control" name="image" value="{{ $product->image }}" type="file"><br>
 
-                        <input type="submit" class="btn btn-success btn-rounded btn-fw" value="{{ __('language.confirm') }}">
+                        <input type="submit" class="btn btn-success btn-rounded btn-fw"
+                            value="{{ __('language.confirm') }}">
 
                         <a class="btn btn-danger btn-rounded btn-fw"
                             href="{{ route('product.index') }}">{{ __('language.go_back') }}</a>
@@ -77,4 +81,11 @@
             </div>
         </div>
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description_ct'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection
