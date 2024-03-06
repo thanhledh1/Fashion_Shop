@@ -69,6 +69,10 @@ return [
     "list" => "Danh sách",
     "active" => "Còn hàng",
     "inactive" => "Hết hàng",
-    "depcriptions" => "Chi tiết sản phẩm"
+    "depcriptions" => "Chi tiết sản phẩm",
+    "information" => "Thông tin",
+    "detail" => "Chi tiết"
+
+
 
 ];

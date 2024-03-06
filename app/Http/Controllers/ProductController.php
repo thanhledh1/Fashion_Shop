@@ -183,4 +183,8 @@ class ProductController extends Controller
         $products->restore();
         return redirect()->route('product.trash');
     }
+    public function show($id){
+        $product = Product::find($id);
+        return view('product.show', compact('product'));
+    }
 }
