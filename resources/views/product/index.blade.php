@@ -109,6 +109,7 @@
                                                     <a href="{{ route('product.edit', [$product->id]) }}"
                                                         class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
                                                 @endif
+                            <a class="btn btn-info btn-rounded btn-fw" href="{{ route('product.show', $product->id) }}">Chi tiết</a>
 
                                                 @if (Auth::user()->hasPermission('Product_delete'))
                                                     <button

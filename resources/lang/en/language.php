@@ -73,4 +73,7 @@ return [
     "active" => "Active",
     "inactive" => "Inactive",
     "depcriptions" => "Depcriptions",
+    "information" => "Information",
+    "detail" => "Detail",
+
 ];
