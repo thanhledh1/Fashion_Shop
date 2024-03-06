@@ -78,7 +78,17 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $order = Order::findOrFail($id);
+            // Retrieve any necessary data for the view
+            $customers = Customer::all(); // Example: Retrieving all customers
+
+            return view('order.edit', compact('order', 'customers'));
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Không tìm thấy đơn hàng có ID: ' . $id);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi chỉnh sửa đơn hàng: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -90,9 +100,17 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $order = Order::find($id);
+        $order->customer_id  = $request->customer_id ;
+        $order->date_at = $request->date_at;
+        $order->note = $request->note;
+        $order->price = $request->price;
+        $order->total = $request->total;
+        $order->status = $request->status;
+        $order->save();
 
+        return redirect()->route('order.index');
+    }
     /**
      * Remove the specified resource from storage.
      *
