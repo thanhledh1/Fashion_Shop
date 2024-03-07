@@ -17,7 +17,10 @@
                             </div>
                             <hr>
                             </header>
-                            <div class="page-section">
+                            <div class="col-md-12 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-3">
                                 <form action="{{ route('user.update', $user->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @method('PUT')
@@ -37,6 +40,21 @@
                                                         @error('email')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="tf1">Mật Khẩu<abbr
+                                                                name="Trường bắt buộc">*</abbr></label>
+                                                        <input name="password" type="text" class="form-control"
+                                                        value="{{ $user->password }}">
+                                                        <small id="" class="form-text text-muted"></small>
+                                                        @error('password')
+                                                            <div class="text text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                        <br>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -89,9 +107,9 @@
                                                                     {{ $group->name }}</option>
                                                             @endforeach
                                                         </select>
-                                                        @if ('group_id')
-                                                            <p class="alert alert-danger" style="color:red">{{ $errors->first('group_id') }}</p>
-                                                        @endif
+                                                        @error('group_id')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                     @endif
                                                 </div>
                                                 <div class="form-group col-lg-4">
@@ -104,9 +122,9 @@
                                                         <option value="Nữ">Nữ</option>
                                                         <option value="Khác">Khác</option>
                                                     </select>
-                                                    @if ('gender')
-                                                        <p class="alert alert-danger" style="color:red">{{ $errors->first('gender') }}</p>
-                                                    @endif
+                                                    @error('gender')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
                                                 <div class="form-group has-warning">
                                                     <label class="col-lg-3 control-label">{{ __('language.image') }}</label>
@@ -116,9 +134,9 @@
                                                         <img type="hidden" width="90px" height="90px" id="blah1"
                                                             src="{{ asset('storage/images/' . $user->image) ?? asset('storage/images/' . $request->image) }}"
                                                             alt="" />
-                                                        @if ('image')
-                                                            <p class="alert alert-danger" style="color:red">{{ $errors->first('image') }}</p>
-                                                        @endif
+                                                            @error('image')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
                                                         <br>
                                                     </div>
                                                 </div>
@@ -141,7 +159,7 @@
                                             </div>
                                             <div class="form-actions">
                                                 <br><br><br><br>
-                                                <button class="btn btn-success btn-rounded btn-fw" type="submit">{{ __('language.submit') }}</button>
+                                                <button  class="btn btn-success btn-rounded btn-fw" type="submit">{{ __('language.submit') }}</button>
                                                 <a class="btn btn-danger btn-rounded btn-fw" href="{{ route('user.index') }}">{{ __('language.go_back') }}</a>
                                             </div>
                                         </div>
@@ -150,7 +168,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </main>
 @endsection

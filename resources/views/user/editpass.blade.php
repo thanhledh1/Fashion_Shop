@@ -52,10 +52,8 @@
                                     <div class="text text-danger">{{ $message }}</div>
                                 @enderror
                                 <br>
-                                <div class="text-center">
-                                    <button type="submit" class="w3-button w3-blue">Lưu mật khẩu</button>
-                                    <a href="{{ route('user.index') }}" class="w3-button w3-red">Hủy</a>
-                                </div>
+                                    <button type="submit"  class="btn btn-success btn-rounded btn-fw">Lưu mật khẩu</button>
+                                    <a href="{{ route('user.index') }}" class="btn btn-danger btn-rounded btn-fw">Hủy</a>
                             </form>
                         </div>
                     </div>
