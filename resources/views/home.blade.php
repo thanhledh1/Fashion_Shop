@@ -3,14 +3,10 @@
 @section('content')
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-
-
     <body>
             <div id="myChart" style="width: 100%; max-width: 600px; height: 500px;"></div>
             <div  style="width: 100%; max-width: 600px; height: 500px;">
                 <canvas id="myChart1" style="width:100%;max-width:600px"></canvas></div>
-
         <script>
             google.charts.load('current', {
                 'packages': ['corechart']
