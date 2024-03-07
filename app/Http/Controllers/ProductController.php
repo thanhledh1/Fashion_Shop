@@ -163,7 +163,7 @@ class ProductController extends Controller
                     $q->where('name', $category);
                 });
             })
-            ->get();
+            ->paginate(5); // Số sản phẩm hiển thị trên mỗi trang, bạn có thể thay đổi số này tùy ý
 
         return view('product.index', compact('products'));
     }
