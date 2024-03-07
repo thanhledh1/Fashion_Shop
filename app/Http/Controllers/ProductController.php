@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $products = Product::with('category')->latest('created_at')->paginate(10);
+            $products = Product::with('category')->latest('created_at')->paginate(5);
             $startingNumber = ($products->currentPage() - 1) * $products->perPage() + 1;
 
             return view('product.index', compact('products', 'startingNumber'));

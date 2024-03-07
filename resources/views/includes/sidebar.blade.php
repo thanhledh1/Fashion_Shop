@@ -11,11 +11,12 @@
           <div class="badge badge-info badge-pill">2</div>
         </a>
       </li> --}}
-
+        <li class="nav-item"> <a class="nav-link" href="{{ route('home') }}">{{ __('language.home_page') }}</a></li>
         <li class="nav-item"> <a class="nav-link" href="{{ route('category.index') }}">{{ __('language.category') }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                aria-controls="ui-basic">
                 <span class="menu-title">{{ __('language.product') }}</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -27,9 +28,11 @@
                             href="{{ route('product.trash') }}">{{ __('language.trash') }}</a></li>
                 </ul>
             </div>
-        <li class="nav-item"> <a class="nav-link" href="{{ route('customer.index') }}">{{ __('language.customer') }}</a>
+        <li class="nav-item"> <a class="nav-link"
+                href="{{ route('customer.index') }}">{{ __('language.customer') }}</a>
         </li>
-        <li class="nav-item"> <a class="nav-link" href="{{ route('group.index') }}">{{ __('language.group') }}</a></li>
+        <li class="nav-item"> <a class="nav-link" href="{{ route('group.index') }}">{{ __('language.group') }}</a>
+        </li>
         <li class="nav-item"> <a class="nav-link" href="{{ route('user.index') }}">{{ __('language.user') }}</a></li>
         <li class="nav-item"> <a class="nav-link" href="{{ route('order.index') }}">{{ __('language.order') }}</a>
         </li>

@@ -11,7 +11,6 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Default form</h4>
                 <div class="mb-3">
                     <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -39,7 +38,7 @@
                         <br>
 
 
-                        <label for="description_ct" class="form-label">{{ __('language.depcriptions') }}</label>
+                        <label for="description_ct" class="form-label">{{ __('language.descriptions') }}</label>
 
                         <textarea name="description_ct" id="description_ct"  value="{{ old('description_ct') }}"></textarea>
 

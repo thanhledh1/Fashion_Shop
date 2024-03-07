@@ -14,7 +14,6 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">{{ __('language.product') }}</h4>
                 <div class="mb-3">
                     <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -38,7 +37,7 @@
                             <div style="color: red">{{ $message }}</div>
                         @enderror
 
-                        <label for="description_ct" class="form-label">{{ __('language.depcriptions') }}</label>
+                        <label for="description_ct" class="form-label">{{ __('language.descriptions') }}</label>
                         <textarea class="form-control" type="text" id="description_ct" name="description_ct">{!! old('description_ct', $product->description_ct) !!}</textarea>
                         @error('description_ct')
                             <div style="color: red">{{ $message }}</div>

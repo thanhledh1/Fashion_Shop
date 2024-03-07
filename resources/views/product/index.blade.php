@@ -51,7 +51,6 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-header">{{ __('language.product') }}</h5>
                     <p class="card-description">
                     </p>
                     <div class="table-responsive">
@@ -115,7 +114,7 @@
                 </div>
             </div>
         </div>
-        {{-- {{ $products->links('pagination::bootstrap-4') }} --}}
+        {{ $products->links('pagination::bootstrap-4') }}
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -72,7 +72,7 @@ return [
     "list" => "List",
     "active" => "Active",
     "inactive" => "Inactive",
-    "depcriptions" => "Depcriptions",
+    "descriptions" => "Depcriptions",
     "information" => "Information",
     "detail" => "Detail",
 

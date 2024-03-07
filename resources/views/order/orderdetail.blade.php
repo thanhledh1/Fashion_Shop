@@ -17,7 +17,10 @@
     <tbody>
         @php $total = 0 @endphp
         @foreach ($items as $key => $item)
-        @php $total += $item->total @endphp
+            @php
+                $item->total = $item->product_price * $item->quantity;
+                $total += $item->total;
+            @endphp
             <tr>
                 <th scope="row">{{ ++$key }}</th>
                 <td>{{ $item->product_name }}</td>
