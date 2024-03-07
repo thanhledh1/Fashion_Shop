@@ -96,9 +96,9 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    @if ('group_id')
-                                                        <p  style="color:red">{{ $errors->first('group_id') }}</p>
-                                                    @endif
+                                                    @error('group_id')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
                                                 </div>
                                                 <div class="form-group col-lg-4">
                                                     <label class="control-label" for="flatpickr01">{{ __('language.gender') }}<abbr
@@ -112,9 +112,9 @@
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach --}}
                                                     </select>
-                                                    @if ('gender')
-                                                        <p  style="color:red">{{ $errors->first('gender') }}</p>
-                                                    @endif
+                                                    @error('gender')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
                                                 <div class="form-group has-warning">
                                                     <label class="col-lg-3 control-label">{{ __('language.image') }}</label>
@@ -123,6 +123,9 @@
                                                             name="image" /><br>
                                                         <img type="hidden" width="90px" height="90px" id="blah"
                                                             src="#" alt="" />
+                                                            @error('image')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
                                                         <br>
                                                     </div>
                                                 </div>

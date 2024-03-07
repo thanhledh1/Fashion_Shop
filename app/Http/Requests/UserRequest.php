@@ -32,49 +32,27 @@ class UserRequest extends FormRequest
             'birthday' => 'required',
             'group_id' => 'required',
             'gender' => 'required',
-
-
+            'image' => 'required',
+            'address' => 'required',
 
 
         ];
     }
+
+
     public function messages()
     {
         return [
-
-            'password.required' => ':attribute bắt buộc nhập',
-            'password.min' => ':attribute bắt buộc :min kí tự trở lên',
-
-            'name.required ' => ':attribute bắt buộc nhập',
-            'phone.required ' => ':attribute bắt buộc nhập',
-            'birthday.required ' => ':attribute bắt buộc nhập',
-            'group_id.required ' => ':attribute bắt buộc nhập',
-            'gender.required ' => ':attribute bắt buộc nhập',
-
-
-
-
-
-            //emai
-            'email.required' => ':attribute bắt buộc nhập'
-
-
-        ];
-    }
-    public function attributes()
-    {
-        return [
-            'name' => 'Tên',
-            'email' => 'Email',
-            'password' => 'Mật khẩu',
-            'phone' => 'Số điện thoại',
-            'birthday' => 'Ngày sinh',
-            'group_id' => 'Chức vụ',
-            'gender' => 'Giới tính',
-
-
-
-
+            'name.required' =>'Không được bỏ trống',
+            'password.required' =>'Không được bỏ trống',
+            'email.required' =>'Không được bỏ trống',
+            'email.unique' =>'E mail đã tồn tại',
+            'phone.required' =>'Không được bỏ trống',
+            'birthday.required' =>'Không được bỏ trống',
+            'group_id.required' =>'Không được bỏ trống',
+            'gender.required' =>'Không được bỏ trống',
+             'image.required' =>'  Không được bỏ trống',
+             'address.required' =>'  Không được bỏ trống'
 
         ];
     }
