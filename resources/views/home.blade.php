@@ -35,7 +35,7 @@
 <script>
     const xValues = {!! json_encode($products->pluck('name')->toArray()) !!};
     const yValues = {!! json_encode($products->map(function($product) { return $product->quantity * $product->price; })->toArray()) !!};
-    const barColors = ["red", "green", "blue", "orange", "brown"];
+    const barColors = ["red", "green", "blue", "orange", "brown", "purple", "yellow", "pink", "gray"];
 
     new Chart("myChart1", {
         type: "bar",

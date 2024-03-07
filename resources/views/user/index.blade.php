@@ -23,7 +23,7 @@
                         </div>
                         <a href="{{ route('user.create') }}"
                             class="btn btn-primary btn-rounded btn-fw">{{ __('language.Register_for_an_HR_account') }}</a>
-                        <br><br>   
+                        <br><br>
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
@@ -55,15 +55,22 @@
                                                         <td>{{ $user->phone }}</td>
                                                         <td>{{ $user->group->name }}</td>
                                                         <td>
-                                                            @if (Auth::user()->hasPermission('User_update'))
-                                                                <a href="{{ route('user.edit', $user->id) }}"
-                                                                    class="btn btn-info btn-rounded btn-fw">{{ __('language.update') }}</a>
-                                                            @endif
-                                                            @if (Auth::user()->hasPermission('User_forceDelete'))
-                                                                <a data-href="{{ route('user.destroy', $user->id) }}"
-                                                                    id="{{ $user->id }}"
-                                                                    class="btn btn-danger btn-rounded btn-fw">{{ __('language.delete') }}</i></a>
-                                                            @endif
+                                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+
+                                                                @php
+                                                                    if (Auth::user()->hasPermission('User_update')) {
+                                                                        echo '<a href="' . route('user.edit', $user->id) . '" class="btn btn-info btn-rounded btn-fw">' . __('language.update') . '</a>';
+                                                                    }
+                                                                @endphp
+                                                                @php
+                                                                    if (Auth::user()->hasPermission('User_forceDelete')) {
+                                                                        echo '<button type="submit" class="btn btn-danger btn-rounded btn-fw">' . __('language.delete') . '</button>';
+                                                                    }
+                                                                @endphp
+
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

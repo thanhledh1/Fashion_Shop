@@ -27,6 +27,15 @@ class UserRequest extends FormRequest
 
             'password' => 'required|min:6',
             'email'=>'required|unique:users,email',
+            'name' => 'required',
+            'phone' => 'required',
+            'birthday' => 'required',
+            'group_id' => 'required',
+            'gender' => 'required',
+
+
+
+
         ];
     }
     public function messages()
@@ -36,9 +45,19 @@ class UserRequest extends FormRequest
             'password.required' => ':attribute bắt buộc nhập',
             'password.min' => ':attribute bắt buộc :min kí tự trở lên',
 
+            'name.required ' => ':attribute bắt buộc nhập',
+            'phone.required ' => ':attribute bắt buộc nhập',
+            'birthday.required ' => ':attribute bắt buộc nhập',
+            'group_id.required ' => ':attribute bắt buộc nhập',
+            'gender.required ' => ':attribute bắt buộc nhập',
+
+
+
+
 
             //emai
             'email.required' => ':attribute bắt buộc nhập'
+
 
         ];
     }
@@ -48,6 +67,14 @@ class UserRequest extends FormRequest
             'name' => 'Tên',
             'email' => 'Email',
             'password' => 'Mật khẩu',
+            'phone' => 'Số điện thoại',
+            'birthday' => 'Ngày sinh',
+            'group_id' => 'Chức vụ',
+            'gender' => 'Giới tính',
+
+
+
+
 
         ];
     }

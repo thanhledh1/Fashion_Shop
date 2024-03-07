@@ -103,16 +103,16 @@ class UserController extends Controller
     {
         try {
             // $this->authorize('view', User::class);
-            $user = User::find($id);
-            $groups=Group::get();
+            $user = User::findOrFail($id);
+            $groups = Group::get();
             $param = [
-                'user' => $user ,
+                'user' => $user,
                 'groups' => $groups
             ];
             return view('user.edit', $param);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'An error occurred. Please try again later.');
+            return redirect()->route('user.index')->with('error', 'An error occurred. Please try again later.');
         }
     }
 
@@ -232,17 +232,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      $this->authorize('forceDelete', Product::class);
-        $notification = [
-            'sainhap' => '!',
-        ];
+        $this->authorize('forceDelete', Product::class);
 
         $user = User::find($id);
-        if($user->group->name!='Supper Admin'){
+        if ($user->group->name != 'Super Admin') {
             $user->delete();
-        }
-        else{
+            return redirect()->route('user.index')->with('success', 'User deleted successfully.');
+        } else {
             return dd(__METHOD__);
         }
+
     }
 }

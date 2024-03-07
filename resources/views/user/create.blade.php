@@ -97,7 +97,7 @@
                                                         @endforeach
                                                     </select>
                                                     @if ('group_id')
-                                                        <p class="alert alert-danger" style="color:red">{{ $errors->first('group_id') }}</p>
+                                                        <p  style="color:red">{{ $errors->first('group_id') }}</p>
                                                     @endif
                                                 </div>
                                                 <div class="form-group col-lg-4">
@@ -113,7 +113,7 @@
                                                 @endforeach --}}
                                                     </select>
                                                     @if ('gender')
-                                                        <p class="alert alert-danger" style="color:red">{{ $errors->first('gender') }}</p>
+                                                        <p  style="color:red">{{ $errors->first('gender') }}</p>
                                                     @endif
                                                 </div>
                                                 <div class="form-group has-warning">

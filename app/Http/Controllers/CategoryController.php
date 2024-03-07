@@ -35,8 +35,12 @@ class CategoryController extends Controller
     }
     public function edit($id)
     {
-        $categories = Category::find($id);
-        return view('category.edit', compact('categories'));
+        try {
+            $categories = Category::findOrFail($id);
+            return view('category.edit', compact('categories'));
+        } catch (\Exception $e) {
+            return redirect()->route('category.index')->with('error', 'Không tìm thấy danh mục.');
+        }
     }
 
     public function update(Request $request, $id)
