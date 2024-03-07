@@ -38,13 +38,13 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' =>'Không được bỏ trống',
-            'slug.required' =>' slug Không được bỏ trống',
-            'price.required' =>' price Không được bỏ trống',
-            'description.required' =>' description Không được bỏ trống',
-            'quantity.required' =>'quantity Không được bỏ trống',
-            'status.required' =>' status Không được bỏ trống',
-            'description_ct.required' =>'  Không được bỏ trống',
-            'category_id.required' =>'  Không được bỏ trống',
+            'price.required' =>'Không được bỏ trống',
+            'description.required' =>'Không được bỏ trống',
+            'description_ct.required' =>'Không được bỏ trống',
+            'quantity.required' =>'Không được bỏ trống',
+            'status.required' =>'Không được bỏ trống',
+            'description_ct.required' =>'Không được bỏ trống',
+            'category_id.required' =>'Không được bỏ trống',
 
 
             //  'image.required' =>'image  Không được bỏ trống'
