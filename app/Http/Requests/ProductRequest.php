@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:products,name',
             'price' => 'required',
             'description' => 'required',
             'quantity' => 'required',
@@ -38,6 +38,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' =>'Không được bỏ trống',
+            'name.unique' =>'Sản phẩm đã tồn tại',
             'price.required' =>'Không được bỏ trống',
             'description.required' =>'Không được bỏ trống',
             'description_ct.required' =>'Không được bỏ trống',
