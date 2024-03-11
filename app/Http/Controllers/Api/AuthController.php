@@ -28,7 +28,7 @@ class AuthController extends Controller
 
     if (!$token) {
         return response()->json([
-            'message' => 'Unauthorized',
+            'message' => 'Sai mật khẩu',
         ], 401);
     }
 
