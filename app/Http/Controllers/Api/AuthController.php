@@ -50,7 +50,14 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'address' => 'required|string|max:255',
         ]);
+        $check_email = Customer::where('email',$request->email)->first();
+        if($check_email != null){
+            return response()->json([
+                'success' => false,
+                'message' => 'Email đã tồn tại!',
 
+            ]);
+        }
         $user = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
