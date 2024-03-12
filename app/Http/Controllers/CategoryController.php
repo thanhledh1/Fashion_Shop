@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::findOrFail($id);
-            return view('category.edit', compact('categories'));
+            return view('category.edit', compact('categories'));    
         } catch (\Exception $e) {
             return redirect()->route('category.index')->with('error', 'Không tìm thấy danh mục.');
         }
