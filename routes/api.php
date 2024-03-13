@@ -44,5 +44,13 @@ Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::post('/checkout', [OrderController::class, 'checkout']);
 
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::put('customer/update', [AuthController::class, 'update']);
+
+
+
+
+
 
 
