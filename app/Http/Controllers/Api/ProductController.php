@@ -18,6 +18,14 @@ class ProductController extends Controller
         return ProductResource::collection($products);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $products = Product::where('name', 'LIKE', "%$search%")->paginate(3);
+
+
+        return response()->json($products);
+    }
     /**
      * Show the form for creating a new resource.
      */
